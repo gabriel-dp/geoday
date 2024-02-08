@@ -4,7 +4,7 @@ import IconButton from "@/components/layout/IconButton";
 
 import { ButtonsContainer, HeaderContainer, LogoContainer } from "./styles";
 
-export default function Navbar() {
+export default function Header() {
 	return (
 		<HeaderContainer>
 			<ButtonsContainer className="left">

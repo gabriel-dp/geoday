@@ -1,4 +1,4 @@
-export interface Country {
+export interface CountryData {
 	// code
 	cca3: string;
 
@@ -28,37 +28,13 @@ export interface Country {
 	landlocked: boolean;
 }
 
-export class CountryList {
-	private list: { [id: string]: Country } = {};
-
-	constructor(countries: Country[]) {
-		countries.forEach((country) => this.insert(country));
-	}
-
-	public getAll() {
-		return Object.values(this.list);
-	}
-
-	public get(id: string): Country | undefined {
-		return this.list[id];
-	}
-
-	public exists(id: string): boolean {
-		return this.list[id] != undefined;
-	}
-
-	public insert(country: Country): boolean {
-		if (this.exists(country.cca3)) return false;
-
-		this.list[country.cca3] = country;
-		return true;
-	}
-
-	public remove(id: string): boolean {
-		if (!this.exists(id)) return false;
-
-		delete this.list[id];
-		return true;
-	}
+export interface Country {
+	name: {
+		exact: string;
+		alias: string[];
+	};
+	data: CountryData;
 }
+
+export type CountryDictionary = Record<string, Country>;
 

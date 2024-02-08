@@ -1,36 +1,38 @@
-import { Country } from "@/types/country";
+import { CountryData, Country, CountryDictionary } from "@/types/country";
 import { normalize } from "@/utils/stringUtils";
 
-export interface CountrySearchable {
-	cca3: string;
-	exact: string;
-	alias: string[];
-}
+export const generateDictionary = (allCountries: CountryData[]): CountryDictionary => {
+	const dictionary: CountryDictionary = {};
 
-export const generateCountrySearchable = (countries: Country[]): CountrySearchable[] => {
-	return countries
-		.map((country) => ({
-			cca3: country.cca3,
-			exact: country.name.common,
-			alias: [country.name.official, ...country.altSpellings],
-		}))
-		.sort((a, b) => a.exact.localeCompare(b.exact));
+	allCountries
+		.sort((a, b) => a.name.common.localeCompare(b.name.common))
+		.forEach((country) => {
+			dictionary[country.cca3] = {
+				name: {
+					exact: country.name.common,
+					alias: [country.name.official, ...country.altSpellings],
+				},
+				data: country,
+			};
+		});
+
+	return dictionary;
 };
 
-export const matchCountriesSearch = (search: string, all: CountrySearchable[], max: number): CountrySearchable[] => {
+export const matchCountriesSearch = (search: string, dictionary: CountryDictionary, max: number): Country[] => {
 	if (search.length == 0) return [];
 
 	const normalizedSearch = normalize(search);
 
-	const match = all
+	const match = Object.values(dictionary)
 		.filter((country) => {
-			if (normalize(country.exact).includes(normalizedSearch)) return true;
-			return country.alias.some((alias) => normalize(alias).includes(normalizedSearch));
+			if (normalize(country.name.exact).includes(normalizedSearch)) return true;
+			return country.name.alias.some((alias) => normalize(alias).includes(normalizedSearch));
 		})
 		.sort((a, b) => {
 			// Sort by exact match first
-			const aExactMatch = normalize(a.exact).startsWith(normalizedSearch);
-			const bExactMatch = normalize(b.exact).startsWith(normalizedSearch);
+			const aExactMatch = normalize(a.name.exact).startsWith(normalizedSearch);
+			const bExactMatch = normalize(b.name.exact).startsWith(normalizedSearch);
 
 			if (aExactMatch && !bExactMatch) {
 				return -1; // a comes first
@@ -45,6 +47,4 @@ export const matchCountriesSearch = (search: string, all: CountrySearchable[], m
 
 	return match;
 };
-
-export const findCountry = () => {};
 
