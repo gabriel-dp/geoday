@@ -1,25 +1,21 @@
 import { MdOutlineHistory, MdOutlineSettings, MdHelpOutline } from "react-icons/md";
 
-import { ButtonsContainer, HeaderContainer, IconButton, LogoContainer } from "./styles";
+import IconButton from "@/components/layout/IconButton";
+
+import { ButtonsContainer, HeaderContainer, LogoContainer } from "./styles";
 
 export default function Navbar() {
 	return (
 		<HeaderContainer>
 			<ButtonsContainer className="left">
-				<IconButton>
-					<MdHelpOutline />
-				</IconButton>
+				<IconButton icon={MdHelpOutline} />
 			</ButtonsContainer>
 			<LogoContainer>
 				<h1>GeoDay</h1>
 			</LogoContainer>
 			<ButtonsContainer className="right">
-				<IconButton>
-					<MdOutlineHistory />
-				</IconButton>
-				<IconButton>
-					<MdOutlineSettings />
-				</IconButton>
+				<IconButton icon={MdOutlineHistory} />
+				<IconButton icon={MdOutlineSettings} />
 			</ButtonsContainer>
 		</HeaderContainer>
 	);
