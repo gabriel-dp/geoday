@@ -5,14 +5,23 @@ import IconButton from "@/components/layout/IconButton";
 import { ButtonContainer, SearchContainer, SearchInput } from "./styles";
 
 interface InputProps {
-	elements: { exact: string; alias: string[] }[];
+	search: string;
+	setSearch: React.Dispatch<React.SetStateAction<string>>;
 	placeholder: string;
 }
 
 export default function Input(props: InputProps) {
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		props.setSearch(event.target.value);
+	};
+
 	return (
 		<SearchContainer>
-			<SearchInput placeholder={props.placeholder} />
+			<SearchInput
+				value={props.search}
+				onChange={(event) => handleInputChange(event)}
+				placeholder={props.placeholder}
+			/>
 			<ButtonContainer>
 				<IconButton icon={MdCheck} />
 			</ButtonContainer>
