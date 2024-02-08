@@ -1,12 +1,12 @@
 import { AppTheme } from "@/styles/themes";
 
 export const LightTheme: AppTheme = {
-	primary: "#FFF",
-	primaryText: "#FFF",
-	primaryHighlight: "#FFF",
+	primary: "#37474F",
+	primaryText: "#EEEEEE",
+	primaryHighlight: "#455A64",
 	secondary: "#FFF",
 	text: "#000",
-	background: "#FFF",
+	background: "#ECEFF1",
 	light: "#FFF",
 	dark: "#FFF",
 	lightDark: "#FFF",
