@@ -7,7 +7,7 @@ export const SearchContainer = styled.div.attrs({
 	height: 100%;
 	border-radius: 100rem;
 	border: 1px solid ${(props) => props.theme.primary}AA;
-	background-color: ${(props) => props.theme.white};
+	background-color: ${(props) => props.theme.light};
 	overflow: hidden;
 
 	display: flex;
