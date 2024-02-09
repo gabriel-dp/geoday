@@ -7,11 +7,18 @@ import { generateDictionary, areCountriesEqual } from "@/utils/countryUtils";
 import Header from "./Header";
 import UserInput from "./UserInput";
 import { BodyContent, MainContainer } from "./styles";
+import { getTodaySeed, mapIntegerInterval, randomSeeded } from "@/utils/randomUtils";
 
 export default function Home() {
 	const [dataCountries, statusCountries] = countryService.All();
 	const dictionary = generateDictionary(dataCountries);
-	const answer = dictionary["BRA"];
+
+	const answer =
+		dictionary[
+			Object.keys(dictionary)[mapIntegerInterval(randomSeeded(getTodaySeed()), Object.keys(dictionary).length)]
+		];
+
+	console.log(answer);
 
 	const [attempts, setAttempts] = useState<Country[]>([]);
 	function registerAttempt(country: Country) {
