@@ -26,6 +26,9 @@ export interface CountryData {
 	languages: { [abbreviation: string]: string };
 	capital: string[];
 	landlocked: boolean;
+
+	// filters
+	independent: boolean;
 }
 
 export interface Country {

@@ -9,7 +9,9 @@ export const countryService = {
 		const { data, status } = useFetchData<CountryData[]>(url);
 
 		const countries = data ?? [];
-		return [countries, status];
+		const independentCountries = countries.filter((country) => country.independent);
+
+		return [independentCountries, status];
 	},
 };
 
