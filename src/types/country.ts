@@ -29,6 +29,7 @@ export interface CountryData {
 }
 
 export interface Country {
+	id: string | number;
 	name: {
 		exact: string;
 		alias: string[];

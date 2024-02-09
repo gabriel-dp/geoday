@@ -8,6 +8,7 @@ interface InputProps {
 	search: string;
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
 	placeholder: string;
+	handleSubmit: () => void;
 }
 
 export default function Input(props: InputProps) {
@@ -21,8 +22,9 @@ export default function Input(props: InputProps) {
 				value={props.search}
 				onChange={(event) => handleInputChange(event)}
 				placeholder={props.placeholder}
+				onKeyDown={props.handleSubmit}
 			/>
-			<ButtonContainer>
+			<ButtonContainer onClick={props.handleSubmit}>
 				<IconButton icon={MdCheck} />
 			</ButtonContainer>
 		</SearchContainer>

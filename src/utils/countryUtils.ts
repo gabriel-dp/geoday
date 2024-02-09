@@ -8,6 +8,7 @@ export const generateDictionary = (allCountries: CountryData[]): CountryDictiona
 		.sort((a, b) => a.name.common.localeCompare(b.name.common))
 		.forEach((country) => {
 			dictionary[country.cca3] = {
+				id: country.cca3,
 				name: {
 					exact: country.name.common,
 					alias: [country.name.official, ...country.altSpellings],
@@ -47,4 +48,6 @@ export const matchCountriesSearch = (search: string, dictionary: CountryDictiona
 
 	return match;
 };
+
+export const areCountriesEqual = (country1: Country, country2: Country) => country1.id == country2.id;
 
