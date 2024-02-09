@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 import { Country } from "@/types/country";
+import { getTodaySeed, mapIntegerInterval, randomSeeded } from "@/utils/randomUtils";
 import { countryService } from "@/services/countryService";
 import { generateDictionary, areCountriesEqual } from "@/utils/countryUtils";
 
 import Header from "./Header";
+import Attempts from "./Attempts";
 import UserInput from "./UserInput";
 import { BodyContent, MainContainer } from "./styles";
-import { getTodaySeed, mapIntegerInterval, randomSeeded } from "@/utils/randomUtils";
 
 export default function Home() {
 	const [dataCountries, statusCountries] = countryService.All();
@@ -33,13 +34,7 @@ export default function Home() {
 	return (
 		<MainContainer>
 			<Header />
-			<BodyContent>
-				{statusCountries != "success" ? (
-					<p>Loading</p>
-				) : (
-					attempts.map((attempt, index) => <p key={index + attempt.name.exact}>{attempt.name.exact}</p>)
-				)}
-			</BodyContent>
+			<BodyContent>{statusCountries != "success" ? <p>Loading</p> : <Attempts attempts={attempts} />}</BodyContent>
 			<UserInput dictionary={dictionary} registerAttempt={registerAttempt} />
 		</MainContainer>
 	);
