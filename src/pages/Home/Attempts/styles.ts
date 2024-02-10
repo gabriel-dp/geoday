@@ -23,7 +23,7 @@ export const Categories = styled.tr`
 	flex-direction: row;
 `;
 
-export const Category = styled.th<{ bg: string }>`
+export const Category = styled.th`
 	width: 100%;
 	padding: 0 1rem;
 	background-color: ${(props) => props.theme.background};
@@ -46,7 +46,7 @@ export const Category = styled.th<{ bg: string }>`
 	}
 `;
 
-export const CountryName = styled.p`
+export const CountryName = styled.td`
 	color: ${(props) => props.theme.primary};
 	font-size: 0.875rem;
 	margin-top: 1rem;
