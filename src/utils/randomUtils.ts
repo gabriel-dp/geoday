@@ -2,7 +2,7 @@ import seedrandom from "seedrandom";
 
 export const getTodaySeed = (): string => {
 	const date = new Date();
-	const seed = date.toLocaleDateString();
+	const seed = date.toLocaleDateString("en-US");
 	return seed;
 };
 
