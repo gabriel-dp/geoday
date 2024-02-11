@@ -11,4 +11,3 @@ export default function AppProvider(props: { children: React.ReactNode }) {
 		</ConfigsProvider>
 	);
 }
-

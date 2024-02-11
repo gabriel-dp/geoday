@@ -83,4 +83,3 @@ export const AttemptCategory = styled.td`
 	align-items: center;
 	justify-content: center;
 `;
-

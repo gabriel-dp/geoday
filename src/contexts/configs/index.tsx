@@ -25,4 +25,3 @@ export function ConfigsProvider(props: { children: React.ReactNode }) {
 
 	return <ConfigsContext.Provider value={{ darkMode, toggleTheme }}>{props.children}</ConfigsContext.Provider>;
 }
-

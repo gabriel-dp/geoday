@@ -8,7 +8,6 @@ import { DarkTheme } from "@/styles/themes/themeDark";
 
 export function ThemeProvider(props: { children: React.ReactNode }) {
 	const { darkMode } = useConfigs();
-
 	const theme: AppTheme = darkMode ? DarkTheme : LightTheme;
 
 	return (
@@ -18,4 +17,3 @@ export function ThemeProvider(props: { children: React.ReactNode }) {
 		</StyledComponentsProvider>
 	);
 }
-

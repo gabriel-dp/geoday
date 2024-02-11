@@ -88,4 +88,3 @@ export const DistanceCategory = (props: CategoryProps) => {
 		</CategoryItem>
 	);
 };
-

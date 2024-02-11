@@ -12,4 +12,3 @@ export const DarkTheme: AppTheme = {
 	lightDark: "#FFF",
 	darkLight: "#FFF",
 };
-

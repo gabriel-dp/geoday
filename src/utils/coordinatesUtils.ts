@@ -42,4 +42,3 @@ export const calculateAngle = (coords1: Coordinates, coords2: Coordinates): numb
 
 	return (angle * 180) / Math.PI; // Convert angle from radians to degrees
 };
-

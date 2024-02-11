@@ -9,4 +9,3 @@ interface IconButtonProps {
 export default function IconButton(props: IconButtonProps) {
 	return <Button>{<props.icon />}</Button>;
 }
-

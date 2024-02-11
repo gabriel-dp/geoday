@@ -15,4 +15,3 @@ export default function useStoredState<T extends object>(key: string, initialVal
 
 	return [value, setValue];
 }
-

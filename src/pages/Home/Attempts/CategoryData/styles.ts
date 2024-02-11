@@ -38,4 +38,3 @@ export const Arrow = styled.div<{ $angle?: string }>`
 		border-right: 5px solid transparent;
 	}
 `;
-

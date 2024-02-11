@@ -16,4 +16,3 @@ export const mapIntegerInterval = (value: number, x: number) => {
 	const fixed = Math.min(Math.floor(value * (x + 1)), x);
 	return fixed;
 };
-

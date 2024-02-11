@@ -27,4 +27,3 @@ export const approximatedNumberString = (value: number): string => {
 			return exponentSufix(value, 0, "");
 	}
 };
-

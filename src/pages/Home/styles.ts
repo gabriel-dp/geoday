@@ -22,4 +22,3 @@ export const BodyContent = styled.div`
 	align-items: center;
 	justify-content: center;
 `;
-

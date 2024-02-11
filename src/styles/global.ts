@@ -23,4 +23,3 @@ export default createGlobalStyle<{ theme: AppTheme }>`
         transition: background 0.25s ease, color 0.25s ease;
     }
 `;
-

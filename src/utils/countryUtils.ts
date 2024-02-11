@@ -50,4 +50,3 @@ export const matchCountriesSearch = (search: string, dictionary: CountryDictiona
 };
 
 export const areCountriesEqual = (country1: Country, country2: Country) => country1.id == country2.id;
-

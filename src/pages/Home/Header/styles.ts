@@ -34,4 +34,3 @@ export const ButtonsContainer = styled.div`
 		justify-content: flex-end;
 	}
 `;
-

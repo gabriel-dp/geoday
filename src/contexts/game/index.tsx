@@ -71,4 +71,3 @@ export function GameProvider(props: { children: React.ReactNode }) {
 		</GameContext.Provider>
 	);
 }
-

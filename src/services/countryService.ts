@@ -14,4 +14,3 @@ export const countryService = {
 		return [independentCountries, status];
 	},
 };
-

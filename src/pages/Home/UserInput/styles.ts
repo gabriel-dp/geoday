@@ -50,4 +50,3 @@ export const ListElement = styled.li`
 		background-color: ${(props) => props.theme.primary}33;
 	}
 `;
-
