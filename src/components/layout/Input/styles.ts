@@ -7,11 +7,16 @@ export const SearchContainer = styled.div.attrs({
 	height: 100%;
 	border-radius: 100rem;
 	border: 1px solid ${(props) => props.theme.primary}AA;
-	background-color: ${(props) => props.theme.light};
+	background-color: ${(props) => props.theme.background};
 	overflow: hidden;
 
 	display: flex;
 	flex-direction: row;
+
+	&,
+	* {
+		transition: all 0.25s ease-in-out;
+	}
 `;
 
 export const SearchInput = styled.input`
@@ -23,6 +28,12 @@ export const SearchInput = styled.input`
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	color: ${(props) => props.theme.text};
+
+	&::placeholder {
+		opacity: 0.5;
+		color: ${(props) => props.theme.text};
+	}
 `;
 
 export const ButtonContainer = styled.div`
@@ -30,7 +41,6 @@ export const ButtonContainer = styled.div`
 	aspect-ratio: 1;
 	border-radius: 50%;
 	background-color: ${(props) => props.theme.primary};
-	transition: background 0.25s ease;
 
 	* {
 		color: ${(props) => props.theme.primaryText};

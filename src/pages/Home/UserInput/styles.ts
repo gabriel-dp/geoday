@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const UserInteractContainer = styled.div`
 	width: 100%;
 	padding: 0.5rem max(1rem, calc(50% - (50rem / 2)));
-	border: 1px solid ${(props) => props.theme.primary}AA;
+	border-top: 1px solid ${(props) => props.theme.primary}AA;
 	position: relative;
 
 	display: flex;
@@ -24,7 +24,8 @@ export const CountryListContainer = styled.div`
 	height: min(25vh, 10rem);
 	border-radius: 0.5rem;
 	border: 1px solid ${(props) => props.theme.primary}AA;
-	background-color: ${(props) => props.theme.light};
+	background-color: ${(props) => props.theme.background};
+	filter: drop-shadow(0 0 0.5rem ${(props) => props.theme.dark}55);
 
 	position: absolute;
 	left: 50%;

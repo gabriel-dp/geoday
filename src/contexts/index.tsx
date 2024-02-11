@@ -6,7 +6,7 @@ export default function AppProvider(props: { children: React.ReactNode }) {
 	return (
 		<ConfigsProvider>
 			<ThemeProvider>
-				<GameProvider>{props.children}</GameProvider>;
+				<GameProvider>{props.children}</GameProvider>
 			</ThemeProvider>
 		</ConfigsProvider>
 	);

@@ -19,6 +19,10 @@ export const LogoContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	* {
+		transition: all 0.25s ease-in-out;
+	}
 `;
 
 export const ButtonsContainer = styled.div`

@@ -1,5 +1,5 @@
-import { FetchStatus, useFetchData } from "@/hooks/useFetchData";
 import { CountryData } from "@/types/country";
+import { FetchStatus, useFetchData } from "@/hooks/useFetchData";
 
 const BASE_REST_COUNTRIES_URL = "https://restcountries.com/v3.1";
 

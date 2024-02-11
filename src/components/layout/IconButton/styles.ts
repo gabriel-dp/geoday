@@ -16,7 +16,7 @@ export const Button = styled.button`
 	* {
 		font-size: 1.5rem;
 		color: ${(props) => props.theme.primary};
-		transition: color 0.25s ease;
+		transition: all 0.25s ease-in-out;
 	}
 
 	&:hover {

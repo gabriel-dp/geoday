@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 
 import { Country } from "@/types/country";
+import useGame from "@/contexts/game/useGame";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
 import { matchCountriesSearch } from "@/utils/countryUtils";
 import IconButton from "@/components/layout/IconButton";
 import Input from "@/components/layout/Input";
-import useGame from "@/contexts/game/useGame";
 
 import { CountryListContainer, ListContainer, ListElement, UserInteractContainer } from "./styles";
 
@@ -14,7 +14,6 @@ export default function UserInput() {
 	const { dictionary, registerAttempt } = useGame();
 
 	const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-
 	const [search, setSearch, searchTimed] = useSearchTimeout(500);
 	const match = matchCountriesSearch(searchTimed, dictionary, 10);
 

@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 export enum FetchStatus {
-	Idle = "idle",
-	Loading = "loading",
-	Success = "success",
-	Error = "error",
+	IDLE = "idle",
+	LOADING = "loading",
+	SUCCESS = "success",
+	ERROR = "error",
 }
 
 interface FetchDataResponse<Data> {
@@ -20,12 +20,12 @@ export function useFetchData<Data>(
 ): FetchDataResponse<Data> {
 	const [data, setData] = useState<Data | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
+	const [status, setStatus] = useState<FetchStatus>(FetchStatus.IDLE);
 
 	const optionsRef = useRef(options);
 
 	const execute = useCallback(() => {
-		setStatus(FetchStatus.Loading);
+		setStatus(FetchStatus.LOADING);
 		fetch(url, optionsRef.current)
 			.then(async (response) => {
 				if (!response.ok) {
@@ -36,11 +36,11 @@ export function useFetchData<Data>(
 			})
 			.then((data) => {
 				setData(data);
-				setStatus(FetchStatus.Success);
+				setStatus(FetchStatus.SUCCESS);
 			})
 			.catch((error) => {
 				setError(error.message);
-				setStatus(FetchStatus.Error);
+				setStatus(FetchStatus.ERROR);
 			});
 	}, [url]);
 

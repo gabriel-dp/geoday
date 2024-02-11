@@ -1,38 +1,40 @@
 export interface CountryData {
-	// code
+	// id
 	cca3: string;
+
+	// filters
+	independent: boolean;
 
 	// names
 	name: { common: string; official: string };
 	altSpellings: string[];
 
-	// local
+	// locals
 	region: string;
 	latlng: [number, number];
 	border: string[]; // cca3 codes
 
-	// numeric
+	// numerics
 	area: number;
 	population: number;
 
-	// flag
+	// flags
 	flag: string; // emoji
 	flags: { png: string; svg: string; alt: string }; // links + alt
 
-	// map
+	// maps
 	maps: { googleMaps: string; openStreetMaps: string }; // map links
 
 	// hints
 	languages: { [abbreviation: string]: string };
 	capital: string[];
 	landlocked: boolean;
-
-	// filters
-	independent: boolean;
 }
 
+export type CountryId = string;
+
 export interface Country {
-	id: string | number;
+	id: CountryId;
 	name: {
 		exact: string;
 		alias: string[];
@@ -40,4 +42,4 @@ export interface Country {
 	data: CountryData;
 }
 
-export type CountryDictionary = Record<string, Country>;
+export type CountryDictionary = Record<CountryId, Country>;

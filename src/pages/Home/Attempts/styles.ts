@@ -10,6 +10,10 @@ export const TableContainer = styled.div`
 		position: sticky;
 		top: 0;
 	}
+
+	* {
+		transition: all 0.25s ease-in-out;
+	}
 `;
 
 export const TableAttempts = styled.table`
@@ -45,8 +49,8 @@ export const Category = styled.th`
 		font-size: 1.25rem;
 	}
 
-	@media screen and (max-width: 767px) {
-		font-size: 0.75rem;
+	@media screen and (max-width: 480px) {
+		font-size: 0.625rem;
 	}
 `;
 
@@ -70,6 +74,10 @@ export const Attempt = styled.tr`
 	display: flex;
 	flex-direction: row;
 	gap: 0rem;
+
+	@media screen and (max-width: 480px) {
+		height: 4.5rem;
+	}
 `;
 
 export const AttemptCategory = styled.td`

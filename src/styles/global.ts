@@ -20,6 +20,6 @@ export default createGlobalStyle<{ theme: AppTheme }>`
     body {
         background-color: ${(props) => props.theme.background};
         color: ${(props) => props.theme.text};
-        transition: background 0.25s ease, color 0.25s ease;
+        transition: background 0.25s ease-in-out, color 0.25s ease-in-out;
     }
 `;

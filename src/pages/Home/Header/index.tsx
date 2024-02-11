@@ -1,10 +1,13 @@
 import { MdOutlineHistory, MdOutlineSettings, MdHelpOutline } from "react-icons/md";
 
+import { useConfigs } from "@/contexts/configs/useConfigs";
 import IconButton from "@/components/layout/IconButton";
 
 import { ButtonsContainer, HeaderContainer, LogoContainer } from "./styles";
 
 export default function Header() {
+	const { toggleTheme } = useConfigs();
+
 	return (
 		<HeaderContainer>
 			<ButtonsContainer className="left">
@@ -15,7 +18,7 @@ export default function Header() {
 			</LogoContainer>
 			<ButtonsContainer className="right">
 				<IconButton icon={MdOutlineHistory} />
-				<IconButton icon={MdOutlineSettings} />
+				<IconButton icon={MdOutlineSettings} onClick={toggleTheme} />
 			</ButtonsContainer>
 		</HeaderContainer>
 	);

@@ -11,6 +11,4 @@ export interface AppTheme extends DefaultTheme {
 	background: HexColor;
 	light: HexColor;
 	dark: HexColor;
-	lightDark: HexColor;
-	darkLight: HexColor;
 }
