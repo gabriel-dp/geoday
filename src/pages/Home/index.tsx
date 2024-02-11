@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Country } from "@/types/country";
 import { getTodaySeed, mapIntegerInterval, randomSeeded } from "@/utils/randomUtils";
@@ -19,7 +19,9 @@ export default function Home() {
 			Object.keys(dictionary)[mapIntegerInterval(randomSeeded(getTodaySeed()), Object.keys(dictionary).length)]
 		];
 
-	console.log(answer);
+	useEffect(() => {
+		console.log(answer);
+	}, [answer]);
 
 	const [attempts, setAttempts] = useState<Country[]>([]);
 	function registerAttempt(country: Country) {
