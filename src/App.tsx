@@ -1,18 +1,11 @@
-import { ThemeProvider } from "styled-components";
-
 import Home from "@/pages/Home";
-import GlobalStyle from "@/styles/global";
-import { AppTheme } from "./styles/themes";
-import { LightTheme } from "@/styles/themes/themeLight";
+import AppProvider from "@/contexts";
 
 export default function App() {
-	const theme: AppTheme = LightTheme;
-
 	return (
-		<ThemeProvider theme={theme}>
-			<GlobalStyle theme={theme} />
+		<AppProvider>
 			<Home />
-		</ThemeProvider>
+		</AppProvider>
 	);
 }
 

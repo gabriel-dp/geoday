@@ -1,24 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 
+import { Country } from "@/types/country";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
-import { Country, CountryDictionary } from "@/types/country";
 import { matchCountriesSearch } from "@/utils/countryUtils";
 import IconButton from "@/components/layout/IconButton";
 import Input from "@/components/layout/Input";
+import useGame from "@/contexts/game/useGame";
 
 import { CountryListContainer, ListContainer, ListElement, UserInteractContainer } from "./styles";
 
-interface UserInputProps {
-	dictionary: CountryDictionary;
-	registerAttempt: (country: Country) => void;
-}
+export default function UserInput() {
+	const { dictionary, registerAttempt } = useGame();
 
-export default function UserInput(props: UserInputProps) {
 	const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
 	const [search, setSearch, searchTimed] = useSearchTimeout(500);
-	const match = matchCountriesSearch(searchTimed, props.dictionary, 10);
+	const match = matchCountriesSearch(searchTimed, dictionary, 10);
 
 	const [isListOpen, setIsListOpen] = useState(false);
 	const automaticList = useRef(false);
@@ -42,7 +40,7 @@ export default function UserInput(props: UserInputProps) {
 
 	function handleSubmit() {
 		if (selectedCountry) {
-			props.registerAttempt(selectedCountry);
+			registerAttempt(selectedCountry);
 			setSearch("");
 		}
 	}

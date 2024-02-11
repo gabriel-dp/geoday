@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { MdOutlineGroups, MdPhotoSizeSelectSmall, MdOutlineExplore, MdOutlinePublic } from "react-icons/md";
 
-import { Country } from "@/types/country";
+import useGame from "@/contexts/game/useGame";
 
 import { AreaCategory, ContinentCategory, DistanceCategory, PopulationCategory } from "./CategoryData";
 import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttempts, TableContainer } from "./styles";
@@ -13,12 +13,9 @@ const CATEGORIES = [
 	{ name: "Distance (km)", icon: MdOutlineExplore, component: DistanceCategory },
 ];
 
-interface AttemptsProps {
-	attempts: Country[];
-	answer: Country;
-}
+export default function Attempts() {
+	const { attempts } = useGame();
 
-export default function Attempts(props: AttemptsProps) {
 	return (
 		<TableContainer>
 			<TableAttempts>
@@ -33,7 +30,7 @@ export default function Attempts(props: AttemptsProps) {
 					</Categories>
 				</thead>
 				<tbody>
-					{props.attempts.map((attempt, index) => (
+					{attempts.map((attempt, index) => (
 						<Fragment key={index + attempt.name.exact}>
 							<tr>
 								<CountryName>
@@ -44,7 +41,7 @@ export default function Attempts(props: AttemptsProps) {
 							<Attempt>
 								{CATEGORIES.map((category, index) => (
 									<AttemptCategory key={`${index}-${attempt.id}`}>
-										<category.component country={attempt} answer={props.answer} />
+										<category.component country={attempt} />
 									</AttemptCategory>
 								))}
 							</Attempt>
