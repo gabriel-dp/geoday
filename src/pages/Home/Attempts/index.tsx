@@ -3,34 +3,28 @@ import { MdOutlineGroups, MdPhotoSizeSelectSmall, MdOutlineExplore, MdOutlinePub
 
 import { Country } from "@/types/country";
 
+import { AreaCategory, ContinentCategory, DistanceCategory, PopulationCategory } from "./CategoryData";
 import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttempts, TableContainer } from "./styles";
-import { approximatedNumberString } from "@/utils/numericUtils";
+
+const CATEGORIES = [
+	{ name: "Continent", icon: MdOutlinePublic, component: ContinentCategory },
+	{ name: "Area (km²)", icon: MdPhotoSizeSelectSmall, component: AreaCategory },
+	{ name: "Population", icon: MdOutlineGroups, component: PopulationCategory },
+	{ name: "Distance (km)", icon: MdOutlineExplore, component: DistanceCategory },
+];
 
 interface AttemptsProps {
 	attempts: Country[];
+	answer: Country;
 }
 
 export default function Attempts(props: AttemptsProps) {
-	const CATERGORIES = [
-		{ name: "Continent", color: "#FF2222", icon: MdOutlinePublic },
-		{ name: "Area (km²)", color: "#22FF22", icon: MdPhotoSizeSelectSmall },
-		{ name: "Population", color: "#FFFF22", icon: MdOutlineGroups },
-		{ name: "Location", color: "#2222FF", icon: MdOutlineExplore },
-	];
-
-	const attemptsBody = props.attempts.map((attempt) => [
-		attempt.data.region,
-		attempt.data.area,
-		attempt.data.population,
-		attempt.data.latlng,
-	]);
-
 	return (
 		<TableContainer>
 			<TableAttempts>
 				<thead>
 					<Categories>
-						{CATERGORIES.map((category) => (
+						{CATEGORIES.map((category) => (
 							<Category key={category.name}>
 								<category.icon className="icon" />
 								<span>{category.name}</span>
@@ -48,9 +42,9 @@ export default function Attempts(props: AttemptsProps) {
 								</CountryName>
 							</tr>
 							<Attempt>
-								{attemptsBody[index].map((row, index) => (
+								{CATEGORIES.map((category, index) => (
 									<AttemptCategory key={`${index}-${attempt.id}`}>
-										{typeof row == "number" ? approximatedNumberString(row) : row}
+										<category.component country={attempt} answer={props.answer} />
 									</AttemptCategory>
 								))}
 							</Attempt>

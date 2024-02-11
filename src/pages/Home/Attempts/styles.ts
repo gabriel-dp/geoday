@@ -5,6 +5,11 @@ export const TableContainer = styled.div`
 	height: 100%;
 	padding: 0rem calc(50% - (50rem / 2));
 	overflow-y: auto;
+
+	thead {
+		position: sticky;
+		top: 0;
+	}
 `;
 
 export const TableAttempts = styled.table`
@@ -13,11 +18,10 @@ export const TableAttempts = styled.table`
 
 export const Categories = styled.tr`
 	width: 100%;
-	height: 4rem;
+	height: 5rem;
+	padding: 0 1rem;
 	box-shadow: 0 1rem 1rem -1.25rem #00000077;
 	border-bottom: 1px solid ${(props) => props.theme.primary}22;
-	position: sticky;
-	top: 0;
 
 	display: flex;
 	flex-direction: row;
@@ -25,11 +29,11 @@ export const Categories = styled.tr`
 
 export const Category = styled.th`
 	width: 100%;
-	padding: 0 1rem;
 	background-color: ${(props) => props.theme.background};
 	color: ${(props) => props.theme.primary};
 	font-size: 0.75rem;
 	font-weight: bold;
+	white-space: nowrap;
 
 	display: flex;
 	flex-direction: column;
@@ -59,19 +63,21 @@ export const CountryName = styled.td`
 `;
 
 export const Attempt = styled.tr`
-	width: 100%;
-	height: 4rem;
+	height: 5rem;
 	margin-bottom: 1.5rem;
 	padding: 0 1rem;
 
 	display: flex;
 	flex-direction: row;
+	gap: 0rem;
 `;
 
 export const AttemptCategory = styled.td`
+	height: 100%;
 	width: 100%;
-	flex: 1;
+	aspect-ratio: 1;
 	font-size: 0.875rem;
+	z-index: -1;
 
 	display: flex;
 	align-items: center;

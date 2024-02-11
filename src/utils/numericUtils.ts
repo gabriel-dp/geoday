@@ -1,23 +1,30 @@
-export const fixNumber = (value: number, decimals: number) => {
+export const fixNumber = (value: number, decimals: number): string => {
+	if (value == Math.floor(value)) return value.toString();
+
 	const fixed = value.toFixed(decimals);
 	return fixed;
 };
+
+const exponentSufix = (value: number, exponent: number, sufix: string): string =>
+	fixNumber(value / Math.pow(10, exponent), 1) + sufix;
 
 export const approximatedNumberString = (value: number): string => {
 	let exponent = 0;
 	while (Math.pow(10, exponent) < Math.abs(value)) exponent++;
 
 	switch (Math.floor((exponent - 1) / 3)) {
+		case 0:
+			return exponentSufix(value, 0, "");
 		case 1:
-			return fixNumber(value / Math.pow(10, 3), 1) + "K";
+			return exponentSufix(value, 3, "K");
 		case 2:
-			return fixNumber(value / Math.pow(10, 6), 1) + "M";
+			return exponentSufix(value, 6, "M");
 		case 3:
-			return fixNumber(value / Math.pow(10, 9), 1) + "B";
+			return exponentSufix(value, 9, "B");
 		case 4:
-			return fixNumber(value / Math.pow(10, 12), 1) + "T";
+			return exponentSufix(value, 12, "T");
 		default:
-			return value + "";
+			return exponentSufix(value, 0, "");
 	}
 };
 

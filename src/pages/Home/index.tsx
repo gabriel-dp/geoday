@@ -34,7 +34,9 @@ export default function Home() {
 	return (
 		<MainContainer>
 			<Header />
-			<BodyContent>{statusCountries != "success" ? <p>Loading</p> : <Attempts attempts={attempts} />}</BodyContent>
+			<BodyContent>
+				{statusCountries != "success" ? <p>Loading</p> : <Attempts attempts={attempts} answer={answer} />}
+			</BodyContent>
 			<UserInput dictionary={dictionary} registerAttempt={registerAttempt} />
 		</MainContainer>
 	);
