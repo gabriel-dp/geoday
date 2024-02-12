@@ -76,7 +76,7 @@ export const DistanceCategory = (props: CategoryProps) => {
 
 	const distance = distanceCoordinates(attemptLatLng, correctLatLng);
 	const degrees = calculateAngle(attemptLatLng, correctLatLng);
-	const isBorder = props.country.data.borders.some((border) => border == answer.id);
+	const isBorder = props.country.data.borders?.some((border) => border == answer.id);
 
 	return (
 		<CategoryItem $bg={distance == 0 ? correct : neutral}>
