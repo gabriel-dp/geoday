@@ -14,7 +14,7 @@ export default function UserInput() {
 	const { dictionary, registerAttempt } = useGame();
 
 	const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
-	const [search, setSearch, searchTimed] = useSearchTimeout(500);
+	const [search, setSearch, searchTimed] = useSearchTimeout(250);
 	const match = matchCountriesSearch(searchTimed, dictionary, 10);
 
 	const [isListOpen, setIsListOpen] = useState(false);
@@ -28,6 +28,21 @@ export default function UserInput() {
 		setIsListOpen(searchTimed.length > 0);
 		setSelectedCountry(null);
 	}, [searchTimed]);
+
+	// Controls outside clicks
+	const listRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (listRef.current && !listRef.current.contains(event.target as Node)) {
+				setIsListOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, []);
 
 	function handleSelectCountry(country: Country) {
 		setSearch(country.name.exact);
@@ -55,7 +70,7 @@ export default function UserInput() {
 			/>
 			<IconButton icon={MdLightbulbOutline} />
 			{isListOpen && match.length > 0 && (
-				<CountryListContainer>
+				<CountryListContainer ref={listRef}>
 					<ListContainer>
 						{match.map((country) => (
 							<ListElement key={country.id} onClick={() => handleSelectCountry(country)}>

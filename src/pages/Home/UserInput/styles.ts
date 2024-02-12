@@ -21,7 +21,9 @@ export const UserInteractContainer = styled.div`
 
 export const CountryListContainer = styled.div`
 	width: min(calc(100% - 3rem), 30rem);
-	height: min(25vh, 10rem);
+	max-height: min(25vh, 10rem);
+	overflow-y: auto;
+
 	border-radius: 0.5rem;
 	border: 1px solid ${(props) => props.theme.primary}AA;
 	background-color: ${(props) => props.theme.background};
@@ -35,8 +37,6 @@ export const CountryListContainer = styled.div`
 
 export const ListContainer = styled.ul`
 	width: 100%;
-	max-height: 100%;
-	overflow-y: auto;
 	padding: 0.25rem 0;
 `;
 

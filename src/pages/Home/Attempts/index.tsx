@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { MdOutlineGroups, MdPhotoSizeSelectSmall, MdOutlineExplore, MdOutlinePublic } from "react-icons/md";
 
 import useGame from "@/contexts/game/useGame";
@@ -16,8 +16,16 @@ const CATEGORIES = [
 export default function Attempts() {
 	const { attempts } = useGame();
 
+	// Scrolls to the bottom every time that a new attempt is registered
+	const tableRef = useRef<HTMLDivElement | null>(null);
+	useEffect(() => {
+		if (attempts.length > 0) {
+			tableRef.current?.scrollTo({ top: tableRef.current?.scrollHeight, behavior: "smooth" });
+		}
+	}, [attempts]);
+
 	return (
-		<TableContainer>
+		<TableContainer ref={tableRef}>
 			<TableAttempts>
 				<thead>
 					<Categories>
