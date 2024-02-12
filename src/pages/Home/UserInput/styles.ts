@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const UserInteractContainer = styled.div`
 	width: 100%;
@@ -37,15 +37,20 @@ export const CountryListContainer = styled.div`
 
 export const ListContainer = styled.ul`
 	width: 100%;
-	padding: 0.25rem 0;
 `;
 
-export const ListElement = styled.li`
+const border = css`
+	outline: 1px solid ${(props) => props.theme.primary}AA;
+`;
+
+export const ListElement = styled.li<{ $selected: string }>`
 	list-style: none;
 	width: 100%;
 	padding: 0.5rem 1rem;
 	font-size: 0.875rem;
 	cursor: pointer;
+
+	${(props) => props.$selected == "true" && border}
 
 	&:hover {
 		background-color: ${(props) => props.theme.primary}33;

@@ -22,7 +22,6 @@ export default function Input(props: InputProps) {
 				value={props.search}
 				onChange={(event) => handleInputChange(event)}
 				placeholder={props.placeholder}
-				onKeyDown={props.handleSubmit}
 			/>
 			<ButtonContainer onClick={props.handleSubmit}>
 				<IconButton icon={MdCheck} />
