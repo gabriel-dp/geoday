@@ -76,17 +76,18 @@ export const DistanceCategory = (props: CategoryProps) => {
 
 	const distance = distanceCoordinates(attemptLatLng, correctLatLng);
 	const degrees = calculateAngle(attemptLatLng, correctLatLng);
+	const isBorder = props.country.data.borders.some((border) => border == answer.id);
 
 	return (
-		<CategoryItem $bg={attemptLatLng == correctLatLng ? correct : neutral}>
-			{attemptLatLng != correctLatLng ? (
-				<>
-					<span>{fixNumber(distance, 0)}</span>
-					<Arrow $angle={degrees.toString()} $distance="far" />
-				</>
-			) : (
+		<CategoryItem $bg={distance == 0 ? correct : neutral}>
+			{distance == 0 ? (
 				<MdOutlineLocationOn className="icon" />
+			) : isBorder ? (
+				<span>Border</span>
+			) : (
+				<span>{fixNumber(distance, 0)}</span>
 			)}
+			{distance != 0 && <Arrow $angle={degrees.toString()} $distance="far" />}
 		</CategoryItem>
 	);
 };

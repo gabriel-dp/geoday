@@ -1,5 +1,6 @@
 import { CountryData, Country, CountryDictionary } from "@/types/country";
 import { normalize } from "@/utils/stringUtils";
+import { getTodaySeed, mapIntegerInterval, randomSeeded } from "./randomUtils";
 
 export const generateDictionary = (allCountries: CountryData[]): CountryDictionary => {
 	const dictionary: CountryDictionary = {};
@@ -50,3 +51,9 @@ export const matchCountriesSearch = (search: string, dictionary: CountryDictiona
 };
 
 export const areCountriesEqual = (country1: Country, country2: Country) => country1.id == country2.id;
+
+export const getDailyAnswer = (dictionary: CountryDictionary): Country => {
+	const ids = Object.keys(dictionary);
+	if (ids.length == 0) return null!;
+	return dictionary[ids[mapIntegerInterval(randomSeeded(getTodaySeed()), ids.length)]];
+};

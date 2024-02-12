@@ -2,8 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 import { Country, CountryDictionary } from "@/types/country";
 import { countryService } from "@/services/countryService";
-import { areCountriesEqual, generateDictionary } from "@/utils/countryUtils";
-import { getTodaySeed, mapIntegerInterval, randomSeeded } from "@/utils/randomUtils";
+import { areCountriesEqual, generateDictionary, getDailyAnswer } from "@/utils/countryUtils";
 
 enum GameState {
 	IDLE = "idle",
@@ -26,15 +25,14 @@ export const GameContext = createContext<GameContextI>({} as GameContextI);
 export function GameProvider(props: { children: React.ReactNode }) {
 	const [data, status] = countryService.All();
 	const dictionary = generateDictionary(data);
-
-	const answer =
-		dictionary[
-			Object.keys(dictionary)[mapIntegerInterval(randomSeeded(getTodaySeed()), Object.keys(dictionary).length)]
-		];
+	const answer = getDailyAnswer(dictionary);
 
 	const [state, setState] = useState<GameState>(GameState.IDLE);
 	useEffect(() => {
 		switch (status) {
+			case "idle":
+				setState(GameState.IDLE);
+				break;
 			case "loading":
 				setState(GameState.LOADING);
 				break;
@@ -42,8 +40,9 @@ export function GameProvider(props: { children: React.ReactNode }) {
 				setState(GameState.ERROR);
 				break;
 			case "success":
-				if (answer) setState(GameState.PLAYING);
-				break;
+				if (answer) {
+					setState(GameState.PLAYING);
+				}
 		}
 	}, [status, answer]);
 
@@ -53,7 +52,6 @@ export function GameProvider(props: { children: React.ReactNode }) {
 			setAttempts((prev) => [...prev, country]);
 			if (areCountriesEqual(country, answer)) {
 				setState(GameState.FINISHED);
-				console.log("win");
 			}
 		}
 	};

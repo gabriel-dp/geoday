@@ -12,7 +12,7 @@ export interface CountryData {
 	// locals
 	region: string;
 	latlng: [number, number];
-	border: string[]; // cca3 codes
+	borders: string[]; // cca3 codes
 
 	// numerics
 	area: number;

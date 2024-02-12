@@ -7,7 +7,8 @@ import { matchCountriesSearch } from "@/utils/countryUtils";
 import IconButton from "@/components/layout/IconButton";
 import Input from "@/components/layout/Input";
 
-import { CountryListContainer, ListContainer, ListElement, UserInteractContainer } from "./styles";
+import CountryList from "./ContryList";
+import { CountryListContainer, UserInteractContainer } from "./styles";
 
 export default function UserInput() {
 	const { dictionary, registerAttempt } = useGame();
@@ -29,7 +30,7 @@ export default function UserInput() {
 		setMatchIndex(searchTimed.length > 0 ? 0 : -1);
 	}, [searchTimed]);
 
-	// Controls outside countries list clicks
+	// Controls clicks outside the countries list
 	const listRef = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -43,6 +44,12 @@ export default function UserInput() {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, []);
+
+	// Keep list element view when navigation using arrows
+	const listElementRef = useRef<HTMLLIElement>(null);
+	useEffect(() => {
+		listElementRef.current?.scrollIntoView({ behavior: "smooth" });
+	}, [matchIndex]);
 
 	function handleSelectCountry(index: number) {
 		const country = match[index];
@@ -61,7 +68,7 @@ export default function UserInput() {
 		}
 	}
 
-	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+	function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
 		const { key } = event;
 		switch (key) {
 			case "ArrowUp":
@@ -76,13 +83,7 @@ export default function UserInput() {
 			default:
 				break;
 		}
-	};
-
-	// Keep list element view when navigation using arrows
-	const listElementRef = useRef<HTMLLIElement>(null);
-	useEffect(() => {
-		listElementRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, [matchIndex]);
+	}
 
 	return (
 		<UserInteractContainer onKeyDown={(event) => handleKeyDown(event)}>
@@ -96,17 +97,12 @@ export default function UserInput() {
 			<IconButton icon={MdLightbulbOutline} />
 			{isListOpen && match.length > 0 && (
 				<CountryListContainer ref={listRef}>
-					<ListContainer>
-						{match.map((country, index) => (
-							<ListElement
-								key={country.id}
-								ref={index == matchIndex ? listElementRef : null}
-								onClick={() => handleSelectCountry(index)}
-								$selected={(index == matchIndex).toString()}>
-								{country.name.exact}
-							</ListElement>
-						))}
-					</ListContainer>
+					<CountryList
+						countries={match}
+						selectedIndex={matchIndex}
+						listElementRef={listElementRef}
+						handleSelectCountry={handleSelectCountry}
+					/>
 				</CountryListContainer>
 			)}
 		</UserInteractContainer>
