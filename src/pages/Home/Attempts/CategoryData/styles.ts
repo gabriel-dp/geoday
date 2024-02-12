@@ -17,9 +17,13 @@ export const CategoryItem = styled.div<{ $bg: string }>`
 	.icon {
 		font-size: 1.5rem;
 	}
+
+	* {
+		text-shadow: 0px 0px 4px ${(props) => props.theme.background};
+	}
 `;
 
-export const Arrow = styled.div<{ $angle?: string }>`
+export const Arrow = styled.div<{ $angle?: string; $distance: "far" | "near" }>`
 	height: 50%;
 	position: absolute;
 	top: 0;
@@ -29,12 +33,13 @@ export const Arrow = styled.div<{ $angle?: string }>`
 	&::before {
 		content: "";
 		position: absolute;
-		top: 0.5rem;
+		top: ${(props) => (props.$distance == "far" ? "0.5rem" : "1rem")};
 		transform: translateX(-50%);
 		height: 0;
 
-		border-bottom: 5px solid ${(props) => props.theme.light};
+		border-bottom: 5px solid ${(props) => props.theme.primary};
 		border-left: 5px solid transparent;
 		border-right: 5px solid transparent;
+		filter: drop-shadow(0 0 1px ${(props) => props.theme.background});
 	}
 `;

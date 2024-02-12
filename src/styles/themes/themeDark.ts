@@ -9,4 +9,8 @@ export const DarkTheme: AppTheme = {
 	background: "#37474F",
 	light: "#EEEEEE",
 	dark: "#222222",
+	correct: "#228b22",
+	almost: "#fdb201",
+	wrong: "#cf2129",
+	neutral: "#205896",
 };

@@ -6,39 +6,39 @@ import { calculateAngle, distanceCoordinates } from "@/utils/coordinatesUtils";
 
 import { Arrow, CategoryItem } from "./styles";
 import useGame from "@/contexts/game/useGame";
+import { useTheme } from "@/contexts/theme/useTheme";
 
 interface CategoryItemProps<T> {
 	attempt: T;
 	correct: T;
 }
 
-enum COLORS {
-	wrong = "#EE4444",
-	correct = "#22FF22",
-	almost = "#FFFF22",
-	neutral = "#6666FF",
-}
-
 export function StringCategory(props: CategoryItemProps<string>) {
+	const { correct, wrong } = useTheme()!;
+
 	return (
-		<CategoryItem $bg={props.attempt == props.correct ? COLORS.correct : COLORS.wrong}>
+		<CategoryItem $bg={props.attempt == props.correct ? correct : wrong}>
 			<span>{props.attempt}</span>
 		</CategoryItem>
 	);
 }
 
 export function NumberCategory(props: CategoryItemProps<number> & { almostRange: [number, number] }) {
+	const { correct, almost, wrong } = useTheme()!;
+
 	const inRange = (value: number, origin: number, ratio: number) =>
 		value >= origin * ratio && value <= origin * (Math.abs(1 - ratio) + 1);
 
-	let color: COLORS = COLORS.wrong;
-	if (inRange(props.attempt, props.correct, props.almostRange[1])) color = COLORS.correct;
-	else if (inRange(props.attempt, props.correct, props.almostRange[0])) color = COLORS.almost;
+	let color = wrong;
+	if (inRange(props.attempt, props.correct, props.almostRange[1])) color = correct;
+	else if (inRange(props.attempt, props.correct, props.almostRange[0])) color = almost;
 
 	return (
 		<CategoryItem $bg={color}>
 			<span>{approximatedNumberString(props.attempt)}</span>
-			{props.attempt != props.correct && <Arrow $angle={props.attempt > props.correct ? "180" : "0"} />}
+			{props.attempt != props.correct && (
+				<Arrow $angle={props.attempt > props.correct ? "180" : "0"} $distance="near" />
+			)}
 		</CategoryItem>
 	);
 }
@@ -69,18 +69,20 @@ export const PopulationCategory = (props: CategoryProps) => {
 };
 
 export const DistanceCategory = (props: CategoryProps) => {
-	const { answer } = useGame();
-	const [attempt, correct] = [props.country.data.latlng, answer.data.latlng];
+	const { correct, neutral } = useTheme()!;
 
-	const distance = distanceCoordinates(attempt, correct);
-	const degrees = calculateAngle(attempt, correct);
+	const { answer } = useGame();
+	const [attemptLatLng, correctLatLng] = [props.country.data.latlng, answer.data.latlng];
+
+	const distance = distanceCoordinates(attemptLatLng, correctLatLng);
+	const degrees = calculateAngle(attemptLatLng, correctLatLng);
 
 	return (
-		<CategoryItem $bg={attempt == correct ? COLORS.correct : COLORS.neutral}>
-			{attempt != correct ? (
+		<CategoryItem $bg={attemptLatLng == correctLatLng ? correct : neutral}>
+			{attemptLatLng != correctLatLng ? (
 				<>
 					<span>{fixNumber(distance, 0)}</span>
-					<Arrow $angle={degrees.toString()} />
+					<Arrow $angle={degrees.toString()} $distance="far" />
 				</>
 			) : (
 				<MdOutlineLocationOn className="icon" />
