@@ -1,6 +1,6 @@
 import { MdCheck } from "react-icons/md";
 
-import IconButton from "@/components/layout/IconButton";
+import IconButton from "@/components/IconButton";
 
 import { ButtonContainer, SearchContainer, SearchInput } from "./styles";
 

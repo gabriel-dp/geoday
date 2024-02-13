@@ -4,8 +4,8 @@ import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 import useGame from "@/contexts/game/useGame";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
 import { matchCountriesSearch } from "@/utils/countryUtils";
-import IconButton from "@/components/layout/IconButton";
-import Input from "@/components/layout/Input";
+import IconButton from "@/components/IconButton";
+import Input from "@/components/Input";
 
 import CountryList from "./ContryList";
 import { CountryListContainer, UserInteractContainer } from "./styles";

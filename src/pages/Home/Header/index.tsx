@@ -1,16 +1,19 @@
 import { MdOutlineHistory, MdOutlineSettings, MdHelpOutline } from "react-icons/md";
 
 import { useConfigs } from "@/contexts/configs/useConfigs";
-import IconButton from "@/components/layout/IconButton";
+import usePopup from "@/hooks/usePopup";
+import IconButton from "@/components/IconButton";
 
 import { ButtonsContainer, HeaderContainer, LogoContainer } from "./styles";
 
 export default function Header() {
 	const { toggleTheme } = useConfigs();
 
+	const [openHelpPopup, helpPopup] = usePopup(<div>ajuda</div>);
+
 	return (
 		<HeaderContainer>
-			<ButtonsContainer className="left">
+			<ButtonsContainer className="left" onClick={openHelpPopup}>
 				<IconButton icon={MdHelpOutline} />
 			</ButtonsContainer>
 			<LogoContainer>
@@ -20,6 +23,7 @@ export default function Header() {
 				<IconButton icon={MdOutlineHistory} />
 				<IconButton icon={MdOutlineSettings} onClick={toggleTheme} />
 			</ButtonsContainer>
+			{helpPopup}
 		</HeaderContainer>
 	);
 }
