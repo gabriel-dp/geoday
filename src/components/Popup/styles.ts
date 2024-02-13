@@ -21,11 +21,32 @@ export const PopupContainer = styled.div`
 	height: min(calc(100% - 2rem), 30rem);
 	width: min(calc(100% - 2rem), 30rem);
 	border-radius: 0.5rem;
-	padding: 1rem;
+	padding: 1.5rem;
+	padding-top: 2.5rem;
 	background-color: ${(props) => props.theme.background};
 	border: 1px solid ${(props) => props.theme.primary};
 	overflow-y: auto;
 	position: relative;
+	text-align: center;
+
+	h1 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: ${(props) => props.theme.primary};
+	}
+
+	hr {
+		height: 1px;
+		border: none;
+		width: 100%;
+		margin: 0.5rem 0;
+		background-color: ${(props) => props.theme.primary};
+	}
+
+	a {
+		color: ${(props) => props.theme.primary};
+		font-weight: bold;
+	}
 `;
 
 export const CloseButtonContainer = styled.div`
