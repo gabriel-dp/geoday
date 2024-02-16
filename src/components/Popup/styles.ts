@@ -52,6 +52,7 @@ export const PopupContainer = styled.div`
 export const CloseButtonContainer = styled.div`
 	height: 2.5rem;
 	aspect-ratio: 1;
+	z-index: 1;
 
 	position: absolute;
 	top: 0.5rem;
