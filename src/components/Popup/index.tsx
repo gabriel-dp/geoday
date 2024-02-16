@@ -15,7 +15,7 @@ export default function Popup(props: PopupProps) {
 		<BackgroundFilter onClick={props.close} $isOpen={props.isOpen.toString()}>
 			<PopupContainer onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
 				<CloseButtonContainer>
-					<IconButton icon={MdClose} onClick={props.close} />
+					<IconButton icon={MdClose} onClick={props.close} label="close" />
 				</CloseButtonContainer>
 				{props.children}
 			</PopupContainer>
