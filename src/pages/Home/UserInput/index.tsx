@@ -87,14 +87,14 @@ export default function UserInput() {
 
 	return (
 		<UserInteractContainer onKeyDown={(event) => handleKeyDown(event)}>
-			<IconButton icon={MdOutlinedFlag} />
+			<IconButton icon={MdOutlinedFlag} label="forfeit" />
 			<Input
 				placeholder="Start with a random country"
 				search={search}
 				setSearch={setSearch}
 				handleSubmit={handleSubmit}
 			/>
-			<IconButton icon={MdLightbulbOutline} />
+			<IconButton icon={MdLightbulbOutline} label="hints" />
 			{isListOpen && match.length > 0 && (
 				<CountryListContainer ref={listRef}>
 					<CountryList

@@ -24,7 +24,7 @@ export default function Input(props: InputProps) {
 				placeholder={props.placeholder}
 			/>
 			<ButtonContainer onClick={props.handleSubmit}>
-				<IconButton icon={MdCheck} />
+				<IconButton icon={MdCheck} label="submit" />
 			</ButtonContainer>
 		</SearchContainer>
 	);
