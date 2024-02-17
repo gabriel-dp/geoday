@@ -2,19 +2,21 @@ import { Fragment, useEffect, useRef } from "react";
 import { MdOutlineGroups, MdPhotoSizeSelectSmall, MdOutlineExplore, MdOutlinePublic } from "react-icons/md";
 
 import useGame from "@/contexts/game/useGame";
+import { useLanguage } from "@/contexts/language/useLanguage";
 
 import { AreaCategory, ContinentCategory, DistanceCategory, PopulationCategory } from "./CategoryData";
 import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttempts, TableContainer } from "./styles";
 
-const CATEGORIES = [
-	{ name: "Continent", icon: MdOutlinePublic, component: ContinentCategory },
-	{ name: "Area (km²)", icon: MdPhotoSizeSelectSmall, component: AreaCategory },
-	{ name: "Population", icon: MdOutlineGroups, component: PopulationCategory },
-	{ name: "Distance (km)", icon: MdOutlineExplore, component: DistanceCategory },
-];
-
 export default function Attempts() {
+	const { t } = useLanguage();
 	const { attempts } = useGame();
+
+	const CATEGORIES = [
+		{ name: t`categories.continent`, icon: MdOutlinePublic, component: ContinentCategory },
+		{ name: t`categories.area`, icon: MdPhotoSizeSelectSmall, component: AreaCategory },
+		{ name: t`categories.population`, icon: MdOutlineGroups, component: PopulationCategory },
+		{ name: t`categories.distance`, icon: MdOutlineExplore, component: DistanceCategory },
+	];
 
 	// Scrolls to the bottom every time that a new attempt is registered
 	const tableRef = useRef<HTMLDivElement | null>(null);

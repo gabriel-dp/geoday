@@ -1,13 +1,15 @@
+import { useLanguage } from "@/contexts/language/useLanguage";
 import { useConfigs } from "@/contexts/configs/useConfigs";
 
 import { ConfigContainer, SettingsContainer } from "./styles";
 
 const LANGUAGES_OPTIONS: { [key: string]: string } = {
-	en: "🇺🇸 - EN",
-	pt: "🇧🇷 - PT",
+	en: "EN - 🇺🇸",
+	pt: "PT - 🇧🇷",
 };
 
 export default function Settings() {
+	const { t } = useLanguage();
 	const { toggleTheme, language, changeLanguage } = useConfigs();
 
 	function handleSelectCountry(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -16,18 +18,18 @@ export default function Settings() {
 
 	return (
 		<SettingsContainer>
-			<h1>Settings</h1>
+			<h1>{t`popups.settings`}</h1>
 			<ConfigContainer>
 				<div className="description">
-					<h2>Theme</h2>
-					<p>Change the appearence</p>
+					<h2>{t`configs.theme.title`}</h2>
+					<p>{t`configs.theme.description`}</p>
 				</div>
 				<button onClick={toggleTheme}>theme</button>
 			</ConfigContainer>
 			<ConfigContainer>
 				<div className="description">
-					<h2>Language</h2>
-					<p>Select the best language for you</p>
+					<h2>{t`configs.language.title`}</h2>
+					<p>{t`configs.language.description`}</p>
 				</div>
 				<select onChange={handleSelectCountry} value={language}>
 					{Object.keys(LANGUAGES_OPTIONS).map((opt) => (

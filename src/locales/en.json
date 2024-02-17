@@ -1,3 +1,42 @@
 {
-	"placeholder": "Start with a random country"
+	"placeholder": "Start with a random country",
+	"help": {
+		"mission": "Your mission is to guess the country of the day using the data provided by your attempts",
+		"input": "Enter any country in the input by typing its name",
+		"attempt": "Analyze the attempt, the colors identify how close you are to discovering the correct country",
+		"map": "Consult the world map at any time",
+		"enjoy": "Have fun!",
+		"author": "Made by "
+	},
+	"border": "Border",
+	"continents": {
+		"africa": "Africa",
+		"americas": "America",
+		"antarctica": "Antarctica",
+		"asia": "Asia",
+		"europe": "Europe",
+		"oceania": "Oceania"
+	},
+	"categories": {
+		"continent": "Continent",
+		"area": "Area (km²)",
+		"population": "Population",
+		"distance": "Distance (km)"
+	},
+	"popups": {
+		"help": "Are you lost?",
+		"map": "Map",
+		"statistics": "Statistics",
+		"settings": "Settings"
+	},
+	"configs": {
+		"theme": {
+			"title": "Theme",
+			"description": "Change the appearence"
+		},
+		"language": {
+			"title": "Language",
+			"description": "Select the best language for you"
+		}
+	}
 }

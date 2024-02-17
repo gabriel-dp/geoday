@@ -29,6 +29,8 @@ export function GameProvider(props: { children: React.ReactNode }) {
 	const dictionary = generateDictionary(data);
 	const answer = getDailyAnswer(dictionary);
 
+	console.log(answer);
+
 	// Store all attempts
 	const [attempts, setAttempts] = useState<Country[]>([]);
 	const registerAttempt = (country: Country): void => {

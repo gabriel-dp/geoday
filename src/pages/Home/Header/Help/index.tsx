@@ -1,20 +1,24 @@
+import { useLanguage } from "@/contexts/language/useLanguage";
+
 import { HelpContainer } from "./styles";
 
 export default function Help() {
+	const { t } = useLanguage();
+
 	return (
 		<HelpContainer>
-			<h1>Are you lost?</h1>
-			<p>Your mission is to guess the country of the day using the data provided by your attempts</p>
-			<p>Enter any country in the input by typing its name</p>
+			<h1>{t`popups.help`}</h1>
+			<p>{t`help.mission`}</p>
+			<p>{t`help.input`}</p>
 			<img src="" alt="IMAGE-INPUT" />
-			<p>Analyze the attempt, the colors identify how close you are to discovering the correct country</p>
+			<p>{t`help.attempt`}</p>
 			<img src="" alt="IMAGE-ATTEMPT" />
-			<p>Consult the world map at any time</p>
+			<p>{t`help.map`}</p>
 			<img src="" alt="IMAGE-MAP" />
-			<p>Have fun!</p>
+			<p>{t`help.enjoy`}</p>
 			<hr />
 			<p>
-				Made by&nbsp;
+				{t`help.author`}
 				<a className="link" href="https://gabriel-dp.github.io/" target="_blank">
 					gabriel-dp
 				</a>

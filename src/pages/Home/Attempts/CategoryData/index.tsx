@@ -1,12 +1,13 @@
 import { MdOutlineLocationOn } from "react-icons/md";
 
+import useGame from "@/contexts/game/useGame";
+import { useTheme } from "@/contexts/theme/useTheme";
+import { useLanguage } from "@/contexts/language/useLanguage";
 import { Country } from "@/types/country";
 import { approximatedNumberString, fixNumber } from "@/utils/numericUtils";
 import { calculateAngle, distanceCoordinates } from "@/utils/coordinatesUtils";
 
 import { Arrow, CategoryItem } from "./styles";
-import useGame from "@/contexts/game/useGame";
-import { useTheme } from "@/contexts/theme/useTheme";
 
 interface CategoryItemProps<T> {
 	attempt: T;
@@ -48,8 +49,13 @@ interface CategoryProps {
 }
 
 export const ContinentCategory = (props: CategoryProps) => {
+	const { t } = useLanguage();
 	const { answer } = useGame();
-	return <StringCategory attempt={props.country.data.region} correct={answer.data.region} />;
+
+	const attemptContinent = t(`continents.${props.country.data.region.toLowerCase()}` as const);
+	const correctContinent = t(`continents.${answer.data.region.toLowerCase()}` as const);
+
+	return <StringCategory attempt={attemptContinent} correct={correctContinent} />;
 };
 
 export const AreaCategory = (props: CategoryProps) => {
@@ -69,6 +75,7 @@ export const PopulationCategory = (props: CategoryProps) => {
 };
 
 export const DistanceCategory = (props: CategoryProps) => {
+	const { t } = useLanguage();
 	const { correct, neutral } = useTheme()!;
 
 	const { answer } = useGame();
@@ -83,7 +90,7 @@ export const DistanceCategory = (props: CategoryProps) => {
 			{distance == 0 ? (
 				<MdOutlineLocationOn className="icon" />
 			) : isBorder ? (
-				<span>Border</span>
+				<span>{t`border`}</span>
 			) : (
 				<span>{fixNumber(distance, 0)}</span>
 			)}
