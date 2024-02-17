@@ -27,6 +27,15 @@ export function GameProvider(props: { children: React.ReactNode }) {
 	const dictionary = generateDictionary(data);
 	const answer = getDailyAnswer(dictionary);
 
+	// Store all attempts
+	const [attempts, setAttempts] = useState<Country[]>([]);
+	const registerAttempt = (country: Country): void => {
+		if (attempts.every((attempt) => !areCountriesEqual(country, attempt))) {
+			setAttempts((prev) => [...prev, country]);
+		}
+	};
+
+	// Controls the game state based on request status
 	const [state, setState] = useState<GameState>(GameState.IDLE);
 	useEffect(() => {
 		switch (status) {
@@ -40,21 +49,18 @@ export function GameProvider(props: { children: React.ReactNode }) {
 				setState(GameState.ERROR);
 				break;
 			case "success":
-				if (answer) {
-					setState(GameState.PLAYING);
-				}
+				setState(GameState.PLAYING);
+				break;
 		}
-	}, [status, answer]);
+	}, [status]);
 
-	const [attempts, setAttempts] = useState<Country[]>([]);
-	const registerAttempt = (country: Country): void => {
-		if (attempts.every((attempt) => !areCountriesEqual(country, attempt))) {
-			setAttempts((prev) => [...prev, country]);
-			if (areCountriesEqual(country, answer)) {
-				setState(GameState.FINISHED);
-			}
+	// Controls when the game finishes
+	useEffect(() => {
+		const { length } = attempts;
+		if (length > 0 && areCountriesEqual(attempts[length - 1], answer)) {
+			setState(GameState.FINISHED);
 		}
-	};
+	}, [attempts, answer]);
 
 	return (
 		<GameContext.Provider

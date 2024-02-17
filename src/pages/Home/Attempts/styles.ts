@@ -4,6 +4,7 @@ export const TableContainer = styled.div`
 	width: 100%;
 	height: 100%;
 	padding: 0rem calc(50% - (50rem / 2));
+	padding-bottom: 1rem;
 	overflow-y: auto;
 
 	thead {
