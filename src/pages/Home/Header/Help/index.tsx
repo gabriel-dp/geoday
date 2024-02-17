@@ -15,7 +15,7 @@ export default function Help() {
 			<hr />
 			<p>
 				Made by&nbsp;
-				<a href="https://gabriel-dp.github.io/" target="_blank">
+				<a className="link" href="https://gabriel-dp.github.io/" target="_blank">
 					gabriel-dp
 				</a>
 			</p>

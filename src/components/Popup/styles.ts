@@ -43,7 +43,7 @@ export const PopupContainer = styled.div`
 		background-color: ${(props) => props.theme.primary};
 	}
 
-	a {
+	.link {
 		color: ${(props) => props.theme.primary};
 		font-weight: bold;
 	}
