@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 
+import useLanguage from "@/contexts/language/useLanguage";
 import useGame from "@/contexts/game/useGame";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
 import { matchCountriesSearch } from "@/utils/countryUtils";
@@ -11,6 +12,7 @@ import CountryList from "./ContryList";
 import { CountryListContainer, UserInteractContainer } from "./styles";
 
 export default function UserInput() {
+	const { t } = useLanguage();
 	const { dictionary, registerAttempt, forfeit } = useGame();
 
 	const [search, setSearch, searchTimed] = useSearchTimeout(250);
@@ -88,12 +90,7 @@ export default function UserInput() {
 	return (
 		<UserInteractContainer onKeyDown={(event) => handleKeyDown(event)}>
 			<IconButton icon={MdOutlinedFlag} label="forfeit" onClick={forfeit} />
-			<Input
-				placeholder="Start with a random country"
-				search={search}
-				setSearch={setSearch}
-				handleSubmit={handleSubmit}
-			/>
+			<Input placeholder={t("placeholder")} search={search} setSearch={setSearch} handleSubmit={handleSubmit} />
 			<IconButton icon={MdLightbulbOutline} label="hints" />
 			{isListOpen && match.length > 0 && (
 				<CountryListContainer ref={listRef}>

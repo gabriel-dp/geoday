@@ -1,3 +1,4 @@
+import "./language";
 import { ConfigsProvider } from "./configs";
 import { ThemeProvider } from "./theme";
 import { GameProvider } from "./game";
