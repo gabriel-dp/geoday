@@ -10,6 +10,7 @@ enum GameState {
 	ERROR = "error",
 	PLAYING = "playing",
 	FINISHED = "finished",
+	FORFEITED = "forfeited",
 }
 
 interface GameContextI {
@@ -18,6 +19,7 @@ interface GameContextI {
 	answer: Country;
 	attempts: Country[];
 	registerAttempt: (country: Country) => void;
+	forfeit: () => void;
 }
 
 export const GameContext = createContext<GameContextI>({} as GameContextI);
@@ -46,13 +48,13 @@ export function GameProvider(props: { children: React.ReactNode }) {
 				setState(GameState.LOADING);
 				break;
 			case "error":
-				setState(GameState.ERROR);
+				setTimeout(() => setState(GameState.ERROR), 3000);
 				break;
 			case "success":
-				setState(GameState.PLAYING);
+				setTimeout(() => setState(GameState.PLAYING), 3000);
 				break;
 		}
-	}, [status]);
+	}, [status, setState]);
 
 	// Controls when the game finishes
 	useEffect(() => {
@@ -60,7 +62,11 @@ export function GameProvider(props: { children: React.ReactNode }) {
 		if (length > 0 && areCountriesEqual(attempts[length - 1], answer)) {
 			setState(GameState.FINISHED);
 		}
-	}, [attempts, answer]);
+	}, [attempts, answer, setState]);
+
+	const forfeit = () => {
+		setState(GameState.FORFEITED);
+	};
 
 	return (
 		<GameContext.Provider
@@ -70,6 +76,7 @@ export function GameProvider(props: { children: React.ReactNode }) {
 				answer,
 				attempts,
 				registerAttempt,
+				forfeit,
 			}}>
 			{props.children}
 		</GameContext.Provider>

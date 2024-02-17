@@ -11,7 +11,7 @@ import CountryList from "./ContryList";
 import { CountryListContainer, UserInteractContainer } from "./styles";
 
 export default function UserInput() {
-	const { dictionary, registerAttempt } = useGame();
+	const { dictionary, registerAttempt, forfeit } = useGame();
 
 	const [search, setSearch, searchTimed] = useSearchTimeout(250);
 	const match = matchCountriesSearch(searchTimed, dictionary, 10);
@@ -87,7 +87,7 @@ export default function UserInput() {
 
 	return (
 		<UserInteractContainer onKeyDown={(event) => handleKeyDown(event)}>
-			<IconButton icon={MdOutlinedFlag} label="forfeit" />
+			<IconButton icon={MdOutlinedFlag} label="forfeit" onClick={forfeit} />
 			<Input
 				placeholder="Start with a random country"
 				search={search}
