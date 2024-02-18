@@ -50,25 +50,31 @@ interface CategoryProps {
 
 export const ContinentCategory = (props: CategoryProps) => {
 	const { t } = useLanguage();
-	const { answer } = useGame();
+	const { dictionary, answer } = useGame();
 
 	const attemptContinent = t(`continents.${props.country.data.region.toLowerCase()}` as const);
-	const correctContinent = t(`continents.${answer.data.region.toLowerCase()}` as const);
+	const correctContinent = t(`continents.${dictionary[answer].data.region.toLowerCase()}` as const);
 
 	return <StringCategory attempt={attemptContinent} correct={correctContinent} />;
 };
 
 export const AreaCategory = (props: CategoryProps) => {
-	const { answer } = useGame();
-	return <NumberCategory attempt={props.country.data.area} correct={answer.data.area} almostRange={[0.5, 0.75]} />;
+	const { dictionary, answer } = useGame();
+	return (
+		<NumberCategory
+			attempt={props.country.data.area}
+			correct={dictionary[answer].data.area}
+			almostRange={[0.5, 0.75]}
+		/>
+	);
 };
 
 export const PopulationCategory = (props: CategoryProps) => {
-	const { answer } = useGame();
+	const { dictionary, answer } = useGame();
 	return (
 		<NumberCategory
 			attempt={props.country.data.population}
-			correct={answer.data.population}
+			correct={dictionary[answer].data.population}
 			almostRange={[0.5, 0.75]}
 		/>
 	);
@@ -78,12 +84,12 @@ export const DistanceCategory = (props: CategoryProps) => {
 	const { t } = useLanguage();
 	const { correct, neutral } = useTheme()!;
 
-	const { answer } = useGame();
-	const [attemptLatLng, correctLatLng] = [props.country.data.latlng, answer.data.latlng];
+	const { answer, dictionary } = useGame();
+	const [attemptLatLng, correctLatLng] = [props.country.data.latlng, dictionary[answer].data.latlng];
 
 	const distance = distanceCoordinates(attemptLatLng, correctLatLng);
 	const degrees = calculateAngle(attemptLatLng, correctLatLng);
-	const isBorder = props.country.data.borders?.some((border) => border == answer.id);
+	const isBorder = props.country.data.borders?.some((border) => border == answer);
 
 	return (
 		<CategoryItem $bg={distance == 0 ? correct : neutral}>

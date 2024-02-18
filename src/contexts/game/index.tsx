@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-import { Country, CountryDictionary } from "@/types/country";
+import { Country, CountryDictionary, CountryId } from "@/types/country";
 import { countryService } from "@/services/countryService";
-import { areCountriesEqual, generateDictionary, getDailyAnswer } from "@/utils/countryUtils";
+import { GenerateDictionary, getDailyAnswer } from "@/utils/countryUtils";
 
 enum GameState {
 	IDLE = "idle",
@@ -16,26 +16,31 @@ enum GameState {
 interface GameContextI {
 	state: GameState;
 	dictionary: CountryDictionary;
-	answer: Country;
-	attempts: Country[];
+	answer: CountryId;
+	attempts: CountryId[];
 	registerAttempt: (country: Country) => void;
 	forfeit: () => void;
 }
 
-export const GameContext = createContext<GameContextI>({} as GameContextI);
+export const GameContext = createContext<GameContextI>({
+	state: GameState.IDLE,
+	dictionary: {},
+	answer: "",
+	attempts: [],
+	registerAttempt: () => {},
+	forfeit: () => {},
+});
 
 export function GameProvider(props: { children: React.ReactNode }) {
 	const [data, status] = countryService.All();
-	const dictionary = generateDictionary(data);
+	const dictionary = GenerateDictionary(data);
 	const answer = getDailyAnswer(dictionary);
 
-	console.log(answer);
-
 	// Store all attempts
-	const [attempts, setAttempts] = useState<Country[]>([]);
+	const [attempts, setAttempts] = useState<CountryId[]>([]);
 	const registerAttempt = (country: Country): void => {
-		if (attempts.every((attempt) => !areCountriesEqual(country, attempt))) {
-			setAttempts((prev) => [...prev, country]);
+		if (attempts.every((attempt) => country.id != attempt)) {
+			setAttempts((prev) => [...prev, country.id]);
 		}
 	};
 
@@ -61,7 +66,7 @@ export function GameProvider(props: { children: React.ReactNode }) {
 	// Controls when the game finishes
 	useEffect(() => {
 		const { length } = attempts;
-		if (length > 0 && areCountriesEqual(attempts[length - 1], answer)) {
+		if (length > 0 && attempts[length - 1] == answer) {
 			setState(GameState.FINISHED);
 		}
 	}, [attempts, answer, setState]);

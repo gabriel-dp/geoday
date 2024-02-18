@@ -9,7 +9,7 @@ import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttem
 
 export default function Attempts() {
 	const { t } = useLanguage();
-	const { attempts } = useGame();
+	const { dictionary, attempts } = useGame();
 
 	const CATEGORIES = [
 		{ name: t`categories.continent`, icon: MdOutlinePublic, component: ContinentCategory },
@@ -41,17 +41,17 @@ export default function Attempts() {
 				</thead>
 				<tbody>
 					{attempts.map((attempt, index) => (
-						<Fragment key={index + attempt.name.exact}>
+						<Fragment key={index + dictionary[attempt].name.exact}>
 							<tr>
 								<CountryName>
 									<span>{index + 1})</span>
-									<span>{attempt.name.exact}</span>
+									<span>{dictionary[attempt].name.exact}</span>
 								</CountryName>
 							</tr>
 							<Attempt>
 								{CATEGORIES.map((category, index) => (
-									<AttemptCategory key={`${index}-${attempt.id}`}>
-										<category.component country={attempt} />
+									<AttemptCategory key={`${index}-${attempt}`}>
+										<category.component country={dictionary[attempt]} />
 									</AttemptCategory>
 								))}
 							</Attempt>

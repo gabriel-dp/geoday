@@ -8,6 +8,7 @@ export interface CountryData {
 	// names
 	name: { common: string; official: string };
 	altSpellings: string[];
+	translations: { [key: string]: { official: string; common: string } };
 
 	// locals
 	region: string;

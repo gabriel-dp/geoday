@@ -1,8 +1,17 @@
 import { CountryData, Country, CountryDictionary } from "@/types/country";
+import { useLanguage } from "@/contexts/language/useLanguage";
 import { normalize } from "@/utils/stringUtils";
+
 import { getTodaySeed, mapIntegerInterval, randomSeeded } from "./randomUtils";
 
-export const generateDictionary = (allCountries: CountryData[]): CountryDictionary => {
+// Map the language used by i18n to the API format
+const LANGUAGE_MAP = {
+	pt: "por",
+};
+
+export const GenerateDictionary = (allCountries: CountryData[]): CountryDictionary => {
+	const { i18n } = useLanguage();
+	const language = LANGUAGE_MAP[i18n.language as keyof typeof LANGUAGE_MAP];
 	const dictionary: CountryDictionary = {};
 
 	allCountries
@@ -11,7 +20,7 @@ export const generateDictionary = (allCountries: CountryData[]): CountryDictiona
 			dictionary[country.cca3] = {
 				id: country.cca3,
 				name: {
-					exact: country.name.common,
+					exact: country.translations[language]?.common ?? country.name.common,
 					alias: [country.name.official, ...country.altSpellings],
 				},
 				data: country,
@@ -50,10 +59,8 @@ export const matchCountriesSearch = (search: string, dictionary: CountryDictiona
 	return match;
 };
 
-export const areCountriesEqual = (country1: Country, country2: Country) => country1.id == country2.id;
-
-export const getDailyAnswer = (dictionary: CountryDictionary): Country => {
+export const getDailyAnswer = (dictionary: CountryDictionary): string => {
 	const ids = Object.keys(dictionary);
 	if (ids.length == 0) return null!;
-	return dictionary[ids[mapIntegerInterval(randomSeeded(getTodaySeed()), ids.length)]];
+	return dictionary[ids[mapIntegerInterval(randomSeeded(getTodaySeed()), ids.length)]].id;
 };
