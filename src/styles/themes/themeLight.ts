@@ -1,6 +1,7 @@
 import { AppTheme } from "@/styles/themes";
 
 export const LightTheme: AppTheme = {
+	logo: "logo-normal.webp",
 	primary: "#37474F",
 	primaryText: "#EEEEEE",
 	primaryHighlight: "#455A64",

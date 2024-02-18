@@ -2,17 +2,19 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
 	width: 100%;
+	height: 3rem;
 	padding: 0 max(1rem, calc(50% - (50rem / 2)));
 	border-bottom: 1px solid ${(props) => props.theme.primary}44;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 `;
 
 export const LogoContainer = styled.div`
-	padding: 0 2rem;
-	height: auto;
+	padding: 0.625rem 1rem;
+	height: 100%;
 	font-size: 0.625rem;
 	color: ${(props) => props.theme.primary};
 
@@ -22,6 +24,11 @@ export const LogoContainer = styled.div`
 
 	* {
 		transition: all 0.25s ease-in-out;
+	}
+
+	img {
+		max-height: 100%;
+		object-fit: contain;
 	}
 `;
 
