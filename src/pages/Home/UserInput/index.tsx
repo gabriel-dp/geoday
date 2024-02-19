@@ -13,7 +13,10 @@ import { CountryListContainer, UserInteractContainer } from "./styles";
 
 export default function UserInput() {
 	const { t } = useLanguage();
-	const { dictionary, registerAttempt, forfeit } = useGame();
+	const {
+		data: { dictionary },
+		functions: { registerAttempt, forfeit },
+	} = useGame();
 
 	const [search, setSearch, searchTimed] = useSearchTimeout(250);
 	const match = matchCountriesSearch(searchTimed, dictionary, 10);

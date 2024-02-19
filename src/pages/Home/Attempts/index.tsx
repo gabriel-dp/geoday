@@ -9,7 +9,10 @@ import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttem
 
 export default function Attempts() {
 	const { t } = useLanguage();
-	const { dictionary, attempts } = useGame();
+	const {
+		data: { dictionary },
+		daily: { attempts },
+	} = useGame();
 
 	const CATEGORIES = [
 		{ name: t`categories.continent`, icon: MdOutlinePublic, component: ContinentCategory },

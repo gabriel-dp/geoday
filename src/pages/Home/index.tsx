@@ -7,17 +7,20 @@ import UserInput from "./UserInput";
 import { BodyContent, MainContainer } from "./styles";
 
 export default function Home() {
-	const { state } = useGame();
+	const {
+		data: { status },
+		daily: { state },
+	} = useGame();
 
 	let body: JSX.Element = <></>;
-	switch (state) {
+	switch (status) {
 		case "loading":
 			body = <Loading />;
 			break;
 		case "error":
 			body = <p>ERROR</p>;
 			break;
-		default:
+		case "success":
 			body = <Attempts />;
 			break;
 	}

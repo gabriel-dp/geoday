@@ -50,7 +50,9 @@ interface CategoryProps {
 
 export const ContinentCategory = (props: CategoryProps) => {
 	const { t } = useLanguage();
-	const { dictionary, answer } = useGame();
+	const {
+		data: { dictionary, answer },
+	} = useGame();
 
 	const attemptContinent = t(`continents.${props.country.data.region.toLowerCase()}` as const);
 	const correctContinent = t(`continents.${dictionary[answer].data.region.toLowerCase()}` as const);
@@ -59,7 +61,10 @@ export const ContinentCategory = (props: CategoryProps) => {
 };
 
 export const AreaCategory = (props: CategoryProps) => {
-	const { dictionary, answer } = useGame();
+	const {
+		data: { dictionary, answer },
+	} = useGame();
+
 	return (
 		<NumberCategory
 			attempt={props.country.data.area}
@@ -70,7 +75,10 @@ export const AreaCategory = (props: CategoryProps) => {
 };
 
 export const PopulationCategory = (props: CategoryProps) => {
-	const { dictionary, answer } = useGame();
+	const {
+		data: { dictionary, answer },
+	} = useGame();
+
 	return (
 		<NumberCategory
 			attempt={props.country.data.population}
@@ -84,7 +92,10 @@ export const DistanceCategory = (props: CategoryProps) => {
 	const { t } = useLanguage();
 	const { correct, neutral } = useTheme()!;
 
-	const { answer, dictionary } = useGame();
+	const {
+		data: { dictionary, answer },
+	} = useGame();
+
 	const [attemptLatLng, correctLatLng] = [props.country.data.latlng, dictionary[answer].data.latlng];
 
 	const distance = distanceCoordinates(attemptLatLng, correctLatLng);
