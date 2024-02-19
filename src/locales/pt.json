@@ -8,7 +8,7 @@
 		"mission": "Sua missão é adivinhar o país do dia usando os dados das suas tentativas",
 		"input": "Insira qualquer país no campo de texto digitando o nome",
 		"attempt": "Analise a tentativa, as cores identificam o quão perto você está de descobrir o país correto",
-		"map": "Consulte o mapa a qualquer momento",
+		"hints": "Consulte o mapa e as dicas a qualquer momento",
 		"enjoy": "Divirta-se!",
 		"author": "Desenvolvido por "
 	},

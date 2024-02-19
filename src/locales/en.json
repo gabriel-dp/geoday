@@ -8,7 +8,7 @@
 		"mission": "Your mission is to guess the country of the day using the data provided by your attempts",
 		"input": "Enter any country in the input by typing its name",
 		"attempt": "Analyze the attempt, the colors identify how close you are to discovering the correct country",
-		"map": "Consult the world map at any time",
+		"hints": "Consult the world map and the hints at any time",
 		"enjoy": "Have fun!",
 		"author": "Made by "
 	},
