@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
 `;
 
 export const LogoContainer = styled.div`
-	padding: 0.625rem 1rem;
+	padding: 0.75rem 1rem;
 	height: 100%;
 	font-size: 0.625rem;
 	color: ${(props) => props.theme.primary};
