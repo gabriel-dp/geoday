@@ -1,4 +1,4 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { Country } from "@/types/country";
 import { GameContextI, GameDaily, State, initialDaily, initialState } from "@/types/game";
@@ -11,14 +11,27 @@ import { hasExpired } from "@/utils/dateUtils";
 export const GameContext = createContext<GameContextI>(initialState());
 
 export function GameProvider(props: { children: React.ReactNode }) {
+	const [daily, setDaily] = useStoredState<GameDaily>("daily", initialDaily());
 	const [data, requestStatus] = countryService.All();
 	const dictionary = GenerateDictionary(data);
 	const answer = getDailyAnswer(dictionary);
 
-	const status =
-		requestStatus == FetchStatus.SUCCESS && Object.keys(dictionary).length == 0 ? FetchStatus.LOADING : requestStatus;
-
-	const [daily, setDaily] = useStoredState<GameDaily>("daily", initialDaily());
+	// Controls status based on requestStatus
+	const [status, setStatus] = useState<FetchStatus>(FetchStatus.IDLE);
+	useEffect(() => {
+		const TIME = 3000;
+		switch (requestStatus) {
+			case "success":
+				if (Object.keys(dictionary).length == 0) break;
+				setTimeout(() => setStatus(FetchStatus.SUCCESS), TIME);
+				break;
+			case "error":
+				setTimeout(() => setStatus(FetchStatus.SUCCESS), TIME);
+				break;
+			default:
+				setStatus(requestStatus);
+		}
+	}, [requestStatus, dictionary]);
 
 	// Resets daily data if it has expired
 	useEffect(() => {
