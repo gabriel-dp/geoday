@@ -62,6 +62,10 @@ export const CountryName = styled.td`
 	margin-bottom: 0.5rem;
 	padding: 0 1rem;
 
+	&.forfeited {
+		margin-top: 5rem;
+	}
+
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;

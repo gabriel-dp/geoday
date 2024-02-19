@@ -8,14 +8,14 @@ export enum State {
 	ERROR = "error",
 	PLAYING = "playing",
 	FINISHED = "finished",
-	FORFEITED = "forfeited",
 }
 
 export interface GameDaily {
 	state: State;
 	attempts: CountryId[];
-	usedMaps: boolean;
+	usedMap: boolean;
 	usedHints: boolean;
+	hasFofeited: boolean;
 	expirationTime: Date;
 }
 
@@ -28,6 +28,8 @@ export interface GameData {
 export interface GameFunctions {
 	registerAttempt: (country: Country) => void;
 	forfeit: () => void;
+	usedHints: () => void;
+	usedMap: () => void;
 }
 
 export interface GameContextI {
@@ -40,7 +42,8 @@ export const initialDaily = (): GameDaily => ({
 	state: State.IDLE,
 	attempts: [],
 	usedHints: false,
-	usedMaps: false,
+	usedMap: false,
+	hasFofeited: false,
 	expirationTime: generateExpirationTime(),
 });
 
@@ -54,5 +57,7 @@ export const initialState = (): GameContextI => ({
 	functions: {
 		registerAttempt: () => {},
 		forfeit: () => {},
+		usedHints: () => {},
+		usedMap: () => {},
 	},
 });

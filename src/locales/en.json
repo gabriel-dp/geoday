@@ -1,4 +1,8 @@
 {
+	"boolean": {
+		"true": "True",
+		"false": "False"
+	},
 	"placeholder": "Start with a random country",
 	"help": {
 		"mission": "Your mission is to guess the country of the day using the data provided by your attempts",
@@ -27,7 +31,9 @@
 		"help": "Are you lost?",
 		"map": "Map",
 		"statistics": "Statistics",
-		"settings": "Settings"
+		"settings": "Settings",
+		"forfeit": "Forfeit",
+		"hints": "Hints"
 	},
 	"configs": {
 		"theme": {
@@ -38,5 +44,27 @@
 			"title": "Language",
 			"description": "Select the best language for you"
 		}
+	},
+	"hints": {
+		"languages": {
+			"name": "Language(s)",
+			"description": "Official language(s) spoken"
+		},
+		"coastline": {
+			"name": "Coastline",
+			"description": "Does the country have a coastline?"
+		},
+		"capitals": {
+			"name": "Capital(s)",
+			"description": "Name of the capital(s)"
+		},
+		"flag": {
+			"name": "Flag",
+			"description": "Official flag of the country"
+		}
+	},
+	"forfeit": {
+		"text": "Are you sure that you want to give up?",
+		"button": "Yes, give up"
 	}
 }

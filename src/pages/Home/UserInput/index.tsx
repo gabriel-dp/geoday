@@ -4,10 +4,13 @@ import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 import { useLanguage } from "@/contexts/language/useLanguage";
 import useGame from "@/contexts/game/useGame";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
+import usePopup from "@/hooks/usePopup";
 import { matchCountriesSearch } from "@/utils/countryUtils";
 import IconButton from "@/components/IconButton";
 import Input from "@/components/Input";
 
+import Hints from "./Hints";
+import Forfeit from "./Forfeit";
 import CountryList from "./ContryList";
 import { CountryListContainer, UserInteractContainer } from "./styles";
 
@@ -15,8 +18,11 @@ export default function UserInput() {
 	const { t } = useLanguage();
 	const {
 		data: { dictionary },
-		functions: { registerAttempt, forfeit },
+		functions: { registerAttempt, usedHints },
 	} = useGame();
+
+	const [openForfeitPopup, ForfeitPopup] = usePopup(<Forfeit />);
+	const [openHintsPopup, HintsPopup] = usePopup(<Hints />);
 
 	const [search, setSearch, searchTimed] = useSearchTimeout(250);
 	const match = matchCountriesSearch(searchTimed, dictionary, 10);
@@ -92,9 +98,16 @@ export default function UserInput() {
 
 	return (
 		<UserInteractContainer onKeyDown={(event) => handleKeyDown(event)}>
-			<IconButton icon={MdOutlinedFlag} label="forfeit" onClick={forfeit} />
+			<IconButton icon={MdOutlinedFlag} label="forfeit" onClick={openForfeitPopup} />
 			<Input placeholder={t("placeholder")} search={search} setSearch={setSearch} handleSubmit={handleSubmit} />
-			<IconButton icon={MdLightbulbOutline} label="hints" />
+			<IconButton
+				icon={MdLightbulbOutline}
+				label="hints"
+				onClick={() => {
+					openHintsPopup();
+					usedHints();
+				}}
+			/>
 			{isListOpen && match.length > 0 && (
 				<CountryListContainer ref={listRef}>
 					<CountryList
@@ -105,6 +118,8 @@ export default function UserInput() {
 					/>
 				</CountryListContainer>
 			)}
+			{ForfeitPopup}
+			{HintsPopup}
 		</UserInteractContainer>
 	);
 }

@@ -49,7 +49,15 @@ export function GameProvider(props: { children: React.ReactNode }) {
 	};
 
 	const forfeit = () => {
-		setDaily((prev) => ({ ...prev, state: State.FORFEITED }));
+		if (daily.state == "playing") setDaily((prev) => ({ ...prev, state: State.FINISHED, hasFofeited: true }));
+	};
+
+	const usedHints = () => {
+		if (daily.state == "playing") setDaily((prev) => ({ ...prev, usedHints: true }));
+	};
+
+	const usedMap = () => {
+		if (daily.state == "playing") setDaily((prev) => ({ ...prev, usedMap: true }));
 	};
 
 	const value = {
@@ -62,6 +70,8 @@ export function GameProvider(props: { children: React.ReactNode }) {
 		functions: {
 			registerAttempt,
 			forfeit,
+			usedHints,
+			usedMap,
 		},
 	};
 

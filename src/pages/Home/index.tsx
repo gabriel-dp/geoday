@@ -29,7 +29,7 @@ export default function Home() {
 		<MainContainer>
 			<Header />
 			<BodyContent>{body}</BodyContent>
-			{state == "playing" && <UserInput />}
+			{state == "playing" && status == "success" && <UserInput />}
 		</MainContainer>
 	);
 }

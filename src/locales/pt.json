@@ -1,4 +1,8 @@
 {
+	"boolean": {
+		"true": "Verdadeiro",
+		"false": "Falso"
+	},
 	"placeholder": "Comece com um país aleatório",
 	"help": {
 		"mission": "Sua missão é adivinhar o país do dia usando os dados das suas tentativas",
@@ -27,7 +31,9 @@
 		"help": "Está perdido?",
 		"map": "Mapa",
 		"statistics": "Estatísticas",
-		"settings": "Configurações"
+		"settings": "Configurações",
+		"forfeit": "Desistir",
+		"hints": "Dicas"
 	},
 	"configs": {
 		"theme": {
@@ -38,5 +44,27 @@
 			"title": "Idioma",
 			"description": "Selecione o melhor idioma para você"
 		}
+	},
+	"hints": {
+		"languages": {
+			"name": "Idioma(s)",
+			"description": "Idiomas falados oficiais"
+		},
+		"coastline": {
+			"name": "Litoral",
+			"description": "O país tem litoral?"
+		},
+		"capitals": {
+			"name": "Capital(is)",
+			"description": "Nome da(s) capital(is)"
+		},
+		"flag": {
+			"name": "Bandeira",
+			"description": "Bandeira oficial do país"
+		}
+	},
+	"forfeit": {
+		"text": "Tem certeza que quer desistir?",
+		"button": "Sim, desisto"
 	}
 }

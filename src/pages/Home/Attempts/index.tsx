@@ -10,8 +10,8 @@ import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttem
 export default function Attempts() {
 	const { t } = useLanguage();
 	const {
-		data: { dictionary },
-		daily: { attempts },
+		data: { dictionary, answer },
+		daily: { attempts, hasFofeited, state },
 	} = useGame();
 
 	const CATEGORIES = [
@@ -27,7 +27,7 @@ export default function Attempts() {
 		if (attempts.length > 0) {
 			tableRef.current?.scrollTo({ top: tableRef.current?.scrollHeight, behavior: "smooth" });
 		}
-	}, [attempts]);
+	}, [attempts, hasFofeited]);
 
 	return (
 		<TableContainer ref={tableRef}>
@@ -60,6 +60,23 @@ export default function Attempts() {
 							</Attempt>
 						</Fragment>
 					))}
+					{state == "finished" && hasFofeited && (
+						<>
+							<tr>
+								<CountryName className="forfeited">
+									<span>The country of the day is</span>
+									<span>{dictionary[answer].name.exact}</span>
+								</CountryName>
+							</tr>
+							<Attempt>
+								{CATEGORIES.map((category, index) => (
+									<AttemptCategory key={`${index}-${answer}`}>
+										<category.component country={dictionary[answer]} />
+									</AttemptCategory>
+								))}
+							</Attempt>
+						</>
+					)}
 				</tbody>
 			</TableAttempts>
 		</TableContainer>

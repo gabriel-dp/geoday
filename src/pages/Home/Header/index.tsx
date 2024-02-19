@@ -1,6 +1,7 @@
 import { MdOutlineHistory, MdOutlineSettings, MdHelpOutline, MdOutlineMap } from "react-icons/md";
 
 import { useTheme } from "@/contexts/theme/useTheme";
+import useGame from "@/contexts/game/useGame";
 import usePopup from "@/hooks/usePopup";
 import IconButton from "@/components/IconButton";
 
@@ -12,6 +13,7 @@ import { ButtonsContainer, HeaderContainer, LogoContainer } from "./styles";
 
 export default function Header() {
 	const theme = useTheme();
+	const { usedMap } = useGame().functions;
 
 	const [openMapPopup, MapPopup] = usePopup(<Map />);
 	const [openHelpPopup, HelpPopup] = usePopup(<Help />);
@@ -22,7 +24,14 @@ export default function Header() {
 		<HeaderContainer>
 			<ButtonsContainer className="left">
 				<IconButton icon={MdHelpOutline} onClick={openHelpPopup} label="help" />
-				<IconButton icon={MdOutlineMap} onClick={openMapPopup} label="map" />
+				<IconButton
+					icon={MdOutlineMap}
+					onClick={() => {
+						openMapPopup();
+						usedMap();
+					}}
+					label="map"
+				/>
 			</ButtonsContainer>
 			<LogoContainer>
 				<img src={`${theme?.logo}`} alt="GeoDay" />
