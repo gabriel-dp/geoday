@@ -2,10 +2,10 @@ import { AppTheme } from "@/styles/themes";
 
 export const LightTheme: AppTheme = {
 	logo: "logo-normal.webp",
+	map: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
 	primary: "#37474F",
 	primaryText: "#EEEEEE",
 	primaryHighlight: "#455A64",
-	secondary: "#F00",
 	text: "#333333",
 	background: "#ECEFF1",
 	light: "#EEEEEE",

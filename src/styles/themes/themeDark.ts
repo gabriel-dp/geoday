@@ -2,10 +2,10 @@ import { AppTheme } from "@/styles/themes";
 
 export const DarkTheme: AppTheme = {
 	logo: "logo-white.webp",
+	map: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
 	primary: "#EEEEEE",
 	primaryText: "#37474F",
 	primaryHighlight: "#CCCCCC",
-	secondary: "#F00",
 	text: "#EEEEEE",
 	background: "#37474F",
 	light: "#EEEEEE",

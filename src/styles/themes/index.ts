@@ -4,10 +4,10 @@ export type HexColor = `#${string}`;
 
 export interface AppTheme extends DefaultTheme {
 	logo: string;
+	map: string;
 	primary: HexColor;
 	primaryText: HexColor;
 	primaryHighlight: HexColor;
-	secondary: HexColor;
 	text: HexColor;
 	background: HexColor;
 	light: HexColor;

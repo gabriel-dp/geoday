@@ -1,6 +1,8 @@
 import L from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 
+import { useTheme } from "@/contexts/theme/useTheme";
+
 import { MainMapContainer } from "./styles";
 
 const MAP_BOUNDS = new L.LatLngBounds(
@@ -9,10 +11,12 @@ const MAP_BOUNDS = new L.LatLngBounds(
 );
 
 export default function Map() {
+	const theme = useTheme();
+
 	return (
 		<MainMapContainer>
 			<MapContainer center={[0, 0]} zoom={0} maxBounds={MAP_BOUNDS} maxBoundsViscosity={1} minZoom={1} fadeAnimation>
-				<TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" noWrap />
+				<TileLayer url={theme?.map} noWrap />
 			</MapContainer>
 		</MainMapContainer>
 	);

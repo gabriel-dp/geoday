@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainMapContainer = styled.div`
 	position: absolute;
 	inset: 0;
-	top: 3.5rem;
 	outline: 1px solid ${(props) => props.theme.primary}AA;
 
 	.leaflet-container {
