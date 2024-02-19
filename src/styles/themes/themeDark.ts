@@ -1,6 +1,7 @@
 import { AppTheme } from "@/styles/themes";
 
 export const DarkTheme: AppTheme = {
+	logo: "logo-white.webp",
 	primary: "#EEEEEE",
 	primaryText: "#37474F",
 	primaryHighlight: "#CCCCCC",
