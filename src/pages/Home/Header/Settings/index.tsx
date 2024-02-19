@@ -2,6 +2,7 @@ import useLanguage from "@/contexts/language/useLanguage";
 import useConfigs from "@/contexts/configs/useConfigs";
 
 import { ConfigContainer, SettingsContainer } from "./styles";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const LANGUAGES_OPTIONS: { [key: string]: string } = {
 	en: "EN - 🇺🇸",
@@ -10,7 +11,7 @@ const LANGUAGES_OPTIONS: { [key: string]: string } = {
 
 export default function Settings() {
 	const { t } = useLanguage();
-	const { toggleTheme, language, changeLanguage } = useConfigs();
+	const { language, changeLanguage } = useConfigs();
 
 	function handleSelectCountry(e: React.ChangeEvent<HTMLSelectElement>) {
 		changeLanguage(e.target.value);
@@ -24,7 +25,7 @@ export default function Settings() {
 					<h2>{t`configs.theme.title`}</h2>
 					<p>{t`configs.theme.description`}</p>
 				</div>
-				<button onClick={toggleTheme}>theme</button>
+				<ThemeSwitch />
 			</ConfigContainer>
 			<ConfigContainer>
 				<div className="description">
