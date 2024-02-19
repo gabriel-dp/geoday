@@ -1,7 +1,7 @@
 {
 	"boolean": {
-		"true": "Verdadeiro",
-		"false": "Falso"
+		"true": "Sim",
+		"false": "Não"
 	},
 	"placeholder": "Comece com um país aleatório",
 	"help": {
@@ -66,5 +66,9 @@
 	"forfeit": {
 		"text": "Tem certeza que quer desistir?",
 		"button": "Sim, desisto"
+	},
+	"statistics": {
+		"usedMap": "O mapa foi consultado?",
+		"usedHints": "As dicas foram usadas?"
 	}
 }

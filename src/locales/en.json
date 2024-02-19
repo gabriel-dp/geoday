@@ -1,7 +1,7 @@
 {
 	"boolean": {
-		"true": "True",
-		"false": "False"
+		"true": "Yes",
+		"false": "No"
 	},
 	"placeholder": "Start with a random country",
 	"help": {
@@ -66,5 +66,9 @@
 	"forfeit": {
 		"text": "Are you sure that you want to give up?",
 		"button": "Yes, give up"
+	},
+	"statistics": {
+		"usedMap": "Was the map consulted?",
+		"usedHints": "Were the hints used?"
 	}
 }
