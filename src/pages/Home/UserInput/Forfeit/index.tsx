@@ -1,5 +1,5 @@
 import useGame from "@/contexts/game/useGame";
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 
 import { ForfeitContainer } from "./styles";
 

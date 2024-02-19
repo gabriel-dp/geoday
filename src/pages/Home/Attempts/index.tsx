@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef } from "react";
 import { MdOutlineGroups, MdPhotoSizeSelectSmall, MdOutlineExplore, MdOutlinePublic } from "react-icons/md";
 
 import useGame from "@/contexts/game/useGame";
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 
 import { AreaCategory, ContinentCategory, DistanceCategory, PopulationCategory } from "./CategoryData";
 import { Attempt, AttemptCategory, Categories, Category, CountryName, TableAttempts, TableContainer } from "./styles";

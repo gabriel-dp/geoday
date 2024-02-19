@@ -1,4 +1,4 @@
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 
 import { HelpContainer } from "./styles";
 

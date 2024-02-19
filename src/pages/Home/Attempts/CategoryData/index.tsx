@@ -1,8 +1,8 @@
 import { MdOutlineLocationOn } from "react-icons/md";
 
 import useGame from "@/contexts/game/useGame";
-import { useTheme } from "@/contexts/theme/useTheme";
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useTheme from "@/contexts/theme/useTheme";
+import useLanguage from "@/contexts/language/useLanguage";
 import { Country } from "@/types/country";
 import { approximatedNumberString, fixNumber } from "@/utils/numericUtils";
 import { calculateAngle, distanceCoordinates } from "@/utils/coordinatesUtils";

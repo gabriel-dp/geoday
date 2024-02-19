@@ -1,6 +1,6 @@
 import { ThemeProvider as StyledComponentsProvider } from "styled-components";
 
-import { useConfigs } from "@/contexts/configs/useConfigs";
+import useConfigs from "@/contexts/configs/useConfigs";
 import Global from "@/styles/global";
 import { AppTheme } from "@/styles/themes";
 import { LightTheme } from "@/styles/themes/themeLight";

@@ -1,5 +1,5 @@
-import { useLanguage } from "@/contexts/language/useLanguage";
-import { useConfigs } from "@/contexts/configs/useConfigs";
+import useLanguage from "@/contexts/language/useLanguage";
+import useConfigs from "@/contexts/configs/useConfigs";
 
 import { ConfigContainer, SettingsContainer } from "./styles";
 

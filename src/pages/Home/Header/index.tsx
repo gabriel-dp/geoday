@@ -1,6 +1,6 @@
 import { MdOutlineHistory, MdOutlineSettings, MdHelpOutline, MdOutlineMap } from "react-icons/md";
 
-import { useTheme } from "@/contexts/theme/useTheme";
+import useTheme from "@/contexts/theme/useTheme";
 import useGame from "@/contexts/game/useGame";
 import usePopup from "@/hooks/usePopup";
 import IconButton from "@/components/IconButton";

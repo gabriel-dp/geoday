@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MdLightbulbOutline, MdOutlinedFlag } from "react-icons/md";
 
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 import useGame from "@/contexts/game/useGame";
 import useSearchTimeout from "@/hooks/useSearchTimeout";
 import usePopup from "@/hooks/usePopup";

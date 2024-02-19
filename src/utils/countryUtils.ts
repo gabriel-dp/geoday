@@ -1,5 +1,5 @@
 import { CountryData, Country, CountryDictionary } from "@/types/country";
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 import { normalize } from "@/utils/stringUtils";
 
 import { getTodaySeed, mapIntegerInterval, randomSeeded } from "./randomUtils";

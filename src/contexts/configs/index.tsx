@@ -1,6 +1,6 @@
 import { createContext, useEffect } from "react";
 
-import { useLanguage } from "@/contexts/language/useLanguage";
+import useLanguage from "@/contexts/language/useLanguage";
 import useStoredState from "@/hooks/useStoredState";
 import { darkThemePreferred, getPreferredLanguage } from "@/utils/browserUtils";
 

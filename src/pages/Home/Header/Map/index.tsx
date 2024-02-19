@@ -1,7 +1,7 @@
 import L from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 
-import { useTheme } from "@/contexts/theme/useTheme";
+import useTheme from "@/contexts/theme/useTheme";
 
 import { MainMapContainer } from "./styles";
 
