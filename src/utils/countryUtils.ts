@@ -6,7 +6,7 @@ import { getTodaySeed, mapIntegerInterval, randomSeeded } from "./randomUtils";
 
 // Map the language used by i18n to the API format
 const LANGUAGE_MAP = {
-	pt: "por",
+	"pt-BR": "por",
 };
 
 export const GenerateDictionary = (allCountries: CountryData[]): CountryDictionary => {

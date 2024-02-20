@@ -1,12 +1,12 @@
 import useLanguage from "@/contexts/language/useLanguage";
 import useConfigs from "@/contexts/configs/useConfigs";
-
-import { ConfigContainer, SettingsContainer } from "./styles";
 import ThemeSwitch from "@/components/ThemeSwitch";
 
+import { ConfigContainer, SettingsContainer } from "./styles";
+
 const LANGUAGES_OPTIONS: { [key: string]: string } = {
-	en: "EN - 🇺🇸",
-	pt: "PT - 🇧🇷",
+	"en-US": "EN - 🇺🇸",
+	"pt-BR": "PT - 🇧🇷",
 };
 
 export default function Settings() {
